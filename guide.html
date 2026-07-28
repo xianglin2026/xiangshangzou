@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>向上走 - APP 下载安装指南</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.card { background: #1e293b; border: 1px solid #334155; border-radius: 20px; padding: 32px 28px; max-width: 440px; width: 100%; text-align: center; }
+h1 { font-size: 28px; font-weight: 800; background: linear-gradient(135deg, #818cf8, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+.sub { font-size: 13px; color: #94a3b8; margin-bottom: 24px; }
+.icon { font-size: 64px; margin-bottom: 16px; }
+.steps { text-align: left; margin: 20px 0; }
+.step { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px; }
+.step-num { width: 28px; height: 28px; border-radius: 50%; background: #6366f1; color: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+.step-text { font-size: 13px; color: #94a3b8; line-height: 1.7; }
+.step-text strong { color: #e2e8f0; }
+.btn { display: block; width: 100%; padding: 14px; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; text-decoration: none; margin-top: 8px; transition: all 0.2s; text-align: center; }
+.btn-primary { background: linear-gradient(135deg, #6366f1, #818cf8); color: white; }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(99,102,241,0.4); }
+.btn-secondary { background: rgba(56,189,248,0.15); color: #38bdf8; border: 1px solid rgba(56,189,248,0.3); }
+.platforms { display: flex; gap: 8px; margin-top: 16px; }
+.platform { flex: 1; background: rgba(255,255,255,0.03); border-radius: 10px; padding: 12px; font-size: 12px; color: #94a3b8; }
+.platform .pf-icon { font-size: 24px; margin-bottom: 4px; }
+.platform .pf-name { font-weight: 600; color: #e2e8f0; }
+.version { font-size: 11px; color: #64748b; margin-top: 16px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="icon"><img src="icons/icon-192x192.png" style="width:80px;height:80px;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.3);"></div>
+  <h1>向上走</h1>
+  <p class="sub">考公备考 · 央国企招聘 · 每日精进</p>
+  
+  <a href="index.html" class="btn btn-primary">📲 打开 APP</a>
+  
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text"><strong>Safari 浏览器打开</strong><br>用 Safari 打开此页面（iOS）或 Chrome（Android）</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text"><strong>点击分享按钮</strong><br>iOS：底部分享 → 「添加到主屏幕」<br>Android：右上角菜单 → 「安装应用」</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text"><strong>命名并添加</strong><br>确认名称为「向上走」，点击添加即可</div>
+    </div>
+  </div>
+
+  <div class="platforms">
+    <div class="platform">
+      <div class="pf-icon">🍎</div>
+      <div class="pf-name">iOS</div>
+      Safari → 分享 → 添加到主屏幕
+    </div>
+    <div class="platform">
+      <div class="pf-icon">🤖</div>
+      <div class="pf-name">Android</div>
+      Chrome → 菜单 → 安装应用
+    </div>
+    <div class="platform">
+      <div class="pf-icon">💻</div>
+      <div class="pf-name">电脑</div>
+      Chrome → 地址栏右侧安装图标
+    </div>
+  </div>
+
+  <p class="version">版本 1.0.0 · 更新于 2026-07-28</p>
+</div>
+</body>
+</html>

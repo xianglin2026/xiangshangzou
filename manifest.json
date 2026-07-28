@@ -1,0 +1,24 @@
+{
+  "name": "向上走 - 考公+央国企备考",
+  "short_name": "向上走",
+  "description": "2026考公备考工作台 & 央国企招聘信息推送。花生十三判断推理、高照资料分析、郭熙言语理解每日学习计划，配套课后练习题本，央国企招聘信息每日更新。",
+  "start_url": "/xiangshangzou/",
+  "scope": "/xiangshangzou/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "lang": "zh-CN",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {"src": "icons/icon-72x72.png", "sizes": "72x72", "type": "image/png"},
+    {"src": "icons/icon-96x96.png", "sizes": "96x96", "type": "image/png"},
+    {"src": "icons/icon-128x128.png", "sizes": "128x128", "type": "image/png"},
+    {"src": "icons/icon-144x144.png", "sizes": "144x144", "type": "image/png"},
+    {"src": "icons/icon-152x152.png", "sizes": "152x152", "type": "image/png"},
+    {"src": "icons/icon-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-384x384.png", "sizes": "384x384", "type": "image/png"},
+    {"src": "icons/icon-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

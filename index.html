@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>向上走 - 考公+央国企备考</title>
+<meta name="description" content="2026考公备考工作台：花生十三判断推理、高照资料分析、郭熙言语理解每日计划，配套练习题本，央国企招聘每日推送">
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="向上走">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<style>
+:root {
+  --bg: #0f172a;
+  --card-bg: #1e293b;
+  --card-hover: #273449;
+  --border: #334155;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --primary: #6366f1;
+  --primary-light: #818cf8;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --accent-1: #a78bfa;
+  --accent-2: #38bdf8;
+  --accent-3: #fb923c;
+  --accent-4: #f472b6;
+  --accent-5: #34d399;
+  --radius: 12px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh;
+}
+.container { max-width: 1500px; margin: 0 auto; padding: 20px 24px; }
+
+/* Header */
+.header { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--border); margin-bottom: 20px; flex-wrap: wrap; gap: 16px; }
+.header h1 { font-size: 28px; font-weight: 800; background: linear-gradient(135deg, var(--primary-light), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.header .subtitle { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+.header .meta { display: flex; gap: 24px; flex-wrap: wrap; }
+.header .meta-item { text-align: center; }
+.header .meta-item .num { font-size: 32px; font-weight: 800; color: var(--primary-light); }
+.header .meta-item .label { font-size: 12px; color: var(--text-muted); }
+
+/* Top nav tabs */
+.top-nav { display: flex; gap: 0; margin-bottom: 24px; background: var(--card-bg); border-radius: var(--radius); padding: 4px; }
+.nav-btn { flex: 1; padding: 12px 16px; border: none; background: transparent; color: var(--text-muted); border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.nav-btn.active { background: var(--primary); color: white; }
+.nav-btn:hover:not(.active) { background: var(--card-hover); color: var(--text); }
+.nav-panel { display: none; }
+.nav-panel.active { display: block; }
+
+/* Progress */
+.progress-section { margin-bottom: 24px; }
+.progress-header { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; color: var(--text-muted); }
+.progress-bar-outer { height: 10px; background: var(--border); border-radius: 10px; overflow: hidden; }
+.progress-bar-inner { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent-2)); border-radius: 10px; transition: width 0.3s; }
+.progress-details { display: flex; gap: 16px; margin-top: 12px; font-size: 13px; color: var(--text-muted); flex-wrap: wrap; }
+
+/* Stats */
+.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 24px; }
+.stat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 16px; display: flex; align-items: center; gap: 12px; transition: all 0.2s; }
+.stat-card:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow); }
+.stat-icon { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+.stat-icon.hs { background: rgba(99,102,241,0.2); color: var(--primary-light); }
+.stat-icon.gz { background: rgba(56,189,248,0.2); color: var(--accent-2); }
+.stat-icon.gx { background: rgba(251,146,60,0.2); color: var(--accent-3); }
+.stat-icon.gq { background: rgba(244,114,182,0.2); color: var(--accent-4); }
+.stat-info .stat-title { font-size: 12px; color: var(--text-muted); margin-bottom: 2px; }
+.stat-info .stat-value { font-size: 20px; font-weight: 700; }
+.stat-info .stat-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+/* Sub-tabs */
+.sub-tabs { display: flex; gap: 4px; margin-bottom: 16px; background: var(--card-bg); border-radius: var(--radius); padding: 4px; }
+.sub-tab-btn { flex: 1; padding: 8px 14px; border: none; background: transparent; color: var(--text-muted); border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.2s; }
+.sub-tab-btn.active { background: rgba(99,102,241,0.3); color: var(--primary-light); }
+.sub-tab-btn:hover:not(.active) { background: var(--card-hover); color: var(--text); }
+.sub-tab-content { display: none; }
+.sub-tab-content.active { display: block; }
+
+/* Legend */
+.legend { display: flex; gap: 16px; margin-bottom: 16px; font-size: 12px; color: var(--text-muted); flex-wrap: wrap; align-items: center; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+.legend-dot.hs { background: var(--primary-light); }
+.legend-dot.gz { background: var(--accent-2); }
+.legend-dot.gx { background: var(--accent-3); }
+.legend-dot.practice { background: var(--success); }
+
+/* Schedule */
+.schedule-grid { display: grid; gap: 12px; }
+.day-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; transition: all 0.2s; }
+.day-card:hover { border-color: var(--primary); }
+.day-card.today { border-color: var(--success); background: rgba(34,197,94,0.05); }
+.day-card.completed { opacity: 0.65; border-color: var(--success); }
+.day-card.completed .day-badge { background: var(--success); }
+.day-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.day-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 700; background: var(--primary); color: white; min-width: 58px; text-align: center; }
+.day-date { font-size: 13px; font-weight: 600; }
+.day-weekday { font-size: 12px; color: var(--text-muted); }
+.day-content { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.day-col-title { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+.task-row { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; margin-bottom: 6px; }
+.task-checkbox { width: 16px; height: 16px; accent-color: var(--success); cursor: pointer; margin-top: 2px; flex-shrink: 0; }
+.task-label { flex: 1; cursor: pointer; }
+.task-tag { font-size: 10px; padding: 1px 7px; border-radius: 10px; font-weight: 600; white-space: nowrap; flex-shrink: 0; }
+.task-tag.hs { background: rgba(99,102,241,0.2); color: var(--primary-light); }
+.task-tag.gz { background: rgba(56,189,248,0.2); color: var(--accent-2); }
+.task-tag.gx { background: rgba(251,146,60,0.2); color: var(--accent-3); }
+.task-tag.practice { background: rgba(34,197,94,0.2); color: var(--success); }
+
+/* Teacher cards */
+.teacher-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; margin-bottom: 20px; }
+.teacher-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; transition: all 0.2s; }
+.teacher-card:hover { border-color: var(--primary); }
+.teacher-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.teacher-avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; color: white; flex-shrink: 0; }
+.teacher-avatar.hs { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+.teacher-avatar.gz { background: linear-gradient(135deg, #0ea5e9, #38bdf8); }
+.teacher-avatar.gx { background: linear-gradient(135deg, #f97316, #fb923c); }
+.teacher-name { font-size: 17px; font-weight: 700; }
+.teacher-subject { font-size: 12px; color: var(--text-muted); }
+.teacher-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+.t-stat { text-align: center; }
+.t-stat .val { font-size: 20px; font-weight: 700; }
+.t-stat .lbl { font-size: 11px; color: var(--text-muted); }
+.chapter-list { list-style: none; }
+.chapter-item { display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; border-radius: 6px; font-size: 13px; margin-bottom: 4px; background: rgba(255,255,255,0.03); }
+.chapter-item .ch-name { color: var(--text); }
+.chapter-item .ch-count { color: var(--text-muted); font-size: 12px; }
+
+/* Practice section */
+.practice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+.practice-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; }
+.practice-card h4 { font-size: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.practice-list { list-style: none; }
+.practice-item { display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; border-radius: 6px; font-size: 13px; margin-bottom: 3px; background: rgba(255,255,255,0.02); }
+.practice-item .pq { color: var(--text-muted); font-size: 12px; }
+.practice-item .check { color: var(--success); font-size: 14px; }
+
+/* GQ (央国企) */
+.gq-overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.gq-module-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; transition: all 0.2s; position: relative; overflow: hidden; }
+.gq-module-card:hover { border-color: var(--accent-4); }
+.gq-module-card .module-icon { font-size: 32px; margin-bottom: 10px; }
+.gq-module-card .module-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.gq-module-card .module-desc { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
+.gq-module-card .module-priority { font-size: 11px; padding: 3px 10px; border-radius: 10px; display: inline-block; font-weight: 600; }
+.priority-high { background: rgba(239,68,68,0.2); color: var(--danger); }
+.priority-mid { background: rgba(245,158,11,0.2); color: var(--warning); }
+.priority-low { background: rgba(148,163,184,0.2); color: var(--text-muted); }
+
+.gq-phase { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; }
+.gq-phase h3 { font-size: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.gq-phase .phase-tag { font-size: 11px; padding: 2px 10px; border-radius: 10px; font-weight: 600; }
+.gq-task-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; }
+.gq-task-item { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 8px; background: rgba(255,255,255,0.02); font-size: 13px; }
+.gq-task-item .gq-check { width: 16px; height: 16px; accent-color: var(--accent-4); cursor: pointer; flex-shrink: 0; }
+.gq-task-item .gq-label { flex: 1; cursor: pointer; }
+
+.timeline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-bottom: 20px; }
+.timeline-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; border-left: 3px solid var(--primary); }
+.timeline-card.phase2 { border-left-color: var(--accent-2); }
+.timeline-card.phase3 { border-left-color: var(--accent-3); }
+.timeline-card.phase4 { border-left-color: var(--accent-4); }
+.timeline-card h4 { font-size: 14px; margin-bottom: 4px; }
+.timeline-card .tl-date { font-size: 11px; color: var(--text-muted); margin-bottom: 10px; }
+
+.tip-box { background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.25); border-radius: var(--radius); padding: 16px 20px; margin-top: 16px; }
+.tip-box h4 { font-size: 14px; margin-bottom: 8px; color: var(--primary-light); }
+.tip-box p, .tip-box li { font-size: 13px; color: var(--text-muted); line-height: 1.8; }
+
+/* Recruit cards */
+.recruit-list { display: grid; gap: 12px; }
+.recruit-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; transition: all 0.2s; display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: start; }
+.recruit-card:hover { border-color: var(--accent-4); }
+.recruit-card.hot { border-left: 3px solid var(--danger); }
+.recruit-card.matched { border-left: 3px solid var(--success); background: rgba(34,197,94,0.04); }
+.recruit-card .rc-main { min-width: 0; }
+.recruit-card .rc-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.recruit-card .rc-company { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+.recruit-card .rc-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+.rc-badge { font-size: 11px; padding: 3px 10px; border-radius: 10px; font-weight: 600; white-space: nowrap; }
+.rc-badge.location-cq { background: rgba(56,189,248,0.15); color: var(--accent-2); }
+.rc-badge.location-gd { background: rgba(251,146,60,0.15); color: var(--accent-3); }
+.rc-badge.salary { background: rgba(34,197,94,0.15); color: var(--success); }
+.rc-badge.deadline { background: rgba(239,68,68,0.15); color: var(--danger); }
+.rc-badge.match { background: rgba(244,114,182,0.15); color: var(--accent-4); }
+.rc-badge.type { background: rgba(99,102,241,0.15); color: var(--primary-light); }
+.recruit-card .rc-requirements { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+.recruit-card .rc-action { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+.rc-link-btn { display: inline-block; padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.2s; border: none; color: white; background: var(--primary); }
+.rc-link-btn:hover { background: var(--primary-light); }
+.rc-link-btn.external { background: rgba(56,189,248,0.2); color: var(--accent-2); border: 1px solid rgba(56,189,248,0.3); }
+.rc-link-btn.external:hover { background: rgba(56,189,248,0.3); }
+.rc-star { font-size: 18px; cursor: pointer; color: var(--text-muted); transition: all 0.2s; background: none; border: none; }
+.rc-star.saved { color: var(--warning); }
+.recruit-filter.active { background: var(--accent-4) !important; color: white !important; border-color: var(--accent-4) !important; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .day-content { grid-template-columns: 1fr; }
+  .teacher-grid, .gq-overview, .gq-task-grid, .timeline-grid { grid-template-columns: 1fr; }
+  .practice-grid { grid-template-columns: 1fr; }
+  .recruit-card { grid-template-columns: 1fr; }
+  .recruit-card .rc-action { flex-direction: row; align-items: center; }
+}
+
+/* PWA Install prompt */
+.install-banner { display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; background: var(--card-bg); border: 1px solid var(--primary); border-radius: 16px; padding: 16px 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.5); max-width: 400px; width: calc(100% - 40px); align-items: center; gap: 12px; }
+.install-banner.show { display: flex; }
+.install-banner .ib-text { flex: 1; font-size: 13px; line-height: 1.5; }
+.install-banner .ib-text strong { color: var(--primary-light); }
+.install-banner .ib-close { background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer; padding: 4px; }
+.install-banner .ib-btn { padding: 8px 20px; border: none; border-radius: 8px; background: var(--primary); color: white; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.install-banner .ib-btn:hover { background: var(--primary-light); }
+
+/* Bottom nav bar for mobile */
+.bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; background: var(--card-bg); border-top: 1px solid var(--border); padding: 6px 0 env(safe-area-inset-bottom, 6px); }
+.bottom-nav .bn-inner { display: flex; justify-content: space-around; align-items: center; max-width: 500px; margin: 0 auto; }
+.bottom-nav .bn-item { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 12px; border: none; background: none; color: var(--text-muted); font-size: 10px; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+.bottom-nav .bn-item .bn-icon { font-size: 20px; }
+.bottom-nav .bn-item.active { color: var(--primary-light); }
+.bottom-nav .bn-item:active { transform: scale(0.92); }
+
+/* Update toast */
+.update-toast { display: none; position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 10000; background: var(--success); color: white; padding: 10px 24px; border-radius: 24px; font-size: 13px; font-weight: 600; box-shadow: 0 4px 16px rgba(34,197,94,0.4); cursor: pointer; }
+.update-toast.show { display: block; animation: toastIn 0.3s ease; }
+@keyframes toastIn { from { opacity: 0; transform: translateX(-50%) translateY(-20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+
+/* Safe area padding for mobile */
+body.app-mode { padding-bottom: 60px; }
+@media (max-width: 768px) {
+  .bottom-nav { display: block; }
+  body { padding-bottom: 64px; }
+  .container { padding: 12px 16px; }
+}
+
+/* Splash screen */
+.splash { display: none; position: fixed; inset: 0; z-index: 99999; background: var(--bg); flex-direction: column; align-items: center; justify-content: center; }
+.splash.show { display: flex; }
+.splash .splash-icon { font-size: 64px; margin-bottom: 16px; animation: pulse 2s infinite; }
+.splash .splash-title { font-size: 28px; font-weight: 800; background: linear-gradient(135deg, var(--primary-light), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.splash .splash-sub { font-size: 13px; color: var(--text-muted); margin-top: 8px; }
+@keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+</style>
+</head>
+<body>
+
+<!-- Splash screen -->
+<div class="splash show" id="splashScreen">
+  <div class="splash-icon"><img src="icons/icon-192x192.png" style="width:80px;height:80px;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.3);"></div>
+  <div class="splash-title">向上走</div>
+  <div class="splash-sub">考公备考 · 央国企招聘 · 每日精进</div>
+</div>
+
+<!-- Install banner -->
+<div class="install-banner" id="installBanner">
+  <span style="font-size:28px;">📲</span>
+  <div class="ib-text"><strong>添加到主屏幕</strong><br>像原生APP一样使用「向上走」</div>
+  <button class="ib-btn" onclick="installApp()">安装</button>
+  <button class="ib-close" onclick="dismissInstall()">✕</button>
+</div>
+
+<!-- Update toast -->
+<div class="update-toast" id="updateToast" onclick="applyUpdate()">🔄 新版本可用，点击更新</div>
+
+<!-- Bottom nav -->
+<div class="bottom-nav" id="bottomNav">
+  <div class="bn-inner">
+    <button class="bn-item active" onclick="bottomNavTo('gongkao', this)">
+      <span class="bn-icon">🎓</span>公务员
+    </button>
+    <button class="bn-item" onclick="bottomNavTo('guoqi', this)">
+      <span class="bn-icon">🏢</span>央国企
+    </button>
+    <button class="bn-item" onclick="bottomNavTo('gongkao', this); switchSubTab('gk-daily');">
+      <span class="bn-icon">📅</span>每日任务
+    </button>
+    <button class="bn-item" onclick="bottomNavTo('guoqi', this); document.getElementById('recruitList')?.scrollIntoView({behavior:'smooth'});">
+      <span class="bn-icon">📬</span>招聘信息
+    </button>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <div>
+    <h1>🚀 向上走</h1>
+    <div class="subtitle">考公：8月15日前完成三模块名师系统课 | 央国企：持续备考至秋招</div>
+  </div>
+  <div class="meta">
+    <div class="meta-item"><div class="num" id="totalDays">18</div><div class="label">考公冲刺天数</div></div>
+    <div class="meta-item"><div class="num" id="totalTasks">114</div><div class="label">总任务项</div></div>
+    <div class="meta-item"><div class="num" id="completedCount">0</div><div class="label">已完成</div></div>
+  </div>
+</div>
+
+<!-- Progress -->
+<div class="progress-section">
+  <div class="progress-header"><span>考公模块整体进度</span><span id="progressPercent">0%</span></div>
+  <div class="progress-bar-outer"><div class="progress-bar-inner" id="progressBar" style="width:0%"></div></div>
+  <div class="progress-details">
+    <span>📅 2026.7.29 → 8.15（考公冲刺）</span>
+    <span>🎯 每天 4-5 课时 + 配套练习</span>
+    <span>🏢 央国企备考：7月起持续至秋招</span>
+  </div>
+</div>
+
+<!-- Top Nav -->
+<div class="top-nav">
+  <button class="nav-btn active" onclick="switchNav('gongkao')">🎓 公务员备考</button>
+  <button class="nav-btn" onclick="switchNav('guoqi')">🏢 央国企备考</button>
+</div>
+
+<!-- ==================== 公务员备考面板 ==================== -->
+<div class="nav-panel active" id="panel-gongkao">
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-icon hs">🧠</div>
+      <div class="stat-info"><div class="stat-title">花生十三 · 判断推理</div><div class="stat-value">53 课时</div><div class="stat-sub">逻辑 + 图推 + 定义 + 类比 + 刷题</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon gz">📊</div>
+      <div class="stat-info"><div class="stat-title">高照 · 资料分析</div><div class="stat-value">16 课时</div><div class="stat-sub">速算 + 增长率 + 比重 + 倍数</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon gx">📝</div>
+      <div class="stat-info"><div class="stat-title">郭熙 · 言语理解</div><div class="stat-value">9 课时</div><div class="stat-sub">片段阅读 + 逻辑填空 + 语句表达</div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:rgba(34,197,94,0.2);color:var(--success);">✅</div>
+      <div class="stat-info"><div class="stat-title">配套练习题</div><div class="stat-value">每日题本</div><div class="stat-sub">课后即练，学完就巩固</div></div>
+    </div>
+  </div>
+
+  <!-- Sub-tabs -->
+  <div class="sub-tabs">
+    <button class="sub-tab-btn active" onclick="switchSubTab('gk-daily')">📅 每日任务清单</button>
+    <button class="sub-tab-btn" onclick="switchSubTab('gk-practice')">📝 课后练习题本</button>
+    <button class="sub-tab-btn" onclick="switchSubTab('gk-courses')">📖 课程体系总览</button>
+  </div>
+
+  <!-- Sub: 每日任务 -->
+  <div class="sub-tab-content active" id="sub-gk-daily">
+    <div class="legend">
+      <span><span class="legend-dot hs"></span> 花生十三·判断推理</span>
+      <span><span class="legend-dot gz"></span> 高照·资料分析</span>
+      <span><span class="legend-dot gx"></span> 郭熙·言语理解</span>
+      <span><span class="legend-dot practice"></span> 课后练习</span>
+    </div>
+    <div class="schedule-grid" id="scheduleGrid"></div>
+  </div>
+
+  <!-- Sub: 练习题本 -->
+  <div class="sub-tab-content" id="sub-gk-practice">
+    <div style="margin-bottom:16px;font-size:13px;color:var(--text-muted);">
+      💡 每完成一个模块的课程学习后，在下方完成对应练习题。建议每节课后做 15-20 题巩固。
+    </div>
+    <div class="practice-grid" id="practiceGrid"></div>
+  </div>
+
+  <!-- Sub: 课程总览 -->
+  <div class="sub-tab-content" id="sub-gk-courses">
+    <div class="teacher-grid">
+      <div class="teacher-card">
+        <div class="teacher-header"><div class="teacher-avatar hs">花</div><div><div class="teacher-name">花生十三</div><div class="teacher-subject">判断推理系统班 · 53课时</div></div></div>
+        <div class="teacher-stats"><div class="t-stat"><div class="val">53</div><div class="lbl">总课时</div></div><div class="t-stat"><div class="val">~70h</div><div class="lbl">总时长</div></div><div class="t-stat"><div class="val">4模块</div><div class="lbl">知识板块</div></div></div>
+        <ul class="chapter-list">
+          <li class="chapter-item"><span class="ch-name">🔷 逻辑判断（理论精讲）</span><span class="ch-count">12讲 24课时</span></li>
+          <li class="chapter-item"><span class="ch-name">🔷 图形推理（理论精讲）</span><span class="ch-count">5讲 10课时</span></li>
+          <li class="chapter-item"><span class="ch-name">🔷 定义判断（理论精讲）</span><span class="ch-count">2讲 4课时</span></li>
+          <li class="chapter-item"><span class="ch-name">🔷 类比推理（理论精讲）</span><span class="ch-count">2讲 4课时</span></li>
+          <li class="chapter-item"><span class="ch-name">🔷 思维导图串讲</span><span class="ch-count">3课时</span></li>
+          <li class="chapter-item"><span class="ch-name">🔷 判断刷题训练</span><span class="ch-count">8课时</span></li>
+        </ul>
+      </div>
+      <div class="teacher-card">
+        <div class="teacher-header"><div class="teacher-avatar gz">高</div><div><div class="teacher-name">高照</div><div class="teacher-subject">资料分析实战理论班 · 16课时</div></div></div>
+        <div class="teacher-stats"><div class="t-stat"><div class="val">16</div><div class="lbl">总课时</div></div><div class="t-stat"><div class="val">~24h</div><div class="lbl">总时长</div></div><div class="t-stat"><div class="val">5模块</div><div class="lbl">知识板块</div></div></div>
+        <ul class="chapter-list">
+          <li class="chapter-item"><span class="ch-name">🟦 速算技巧与估算</span><span class="ch-count">2课时</span></li>
+          <li class="chapter-item"><span class="ch-name">🟦 增长率与增长量</span><span class="ch-count">4课时</span></li>
+          <li class="chapter-item"><span class="ch-name">🟦 比重与平均数</span><span class="ch-count">4课时</span></li>
+          <li class="chapter-item"><span class="ch-name">🟦 倍数与比值</span><span class="ch-count">3课时</span></li>
+          <li class="chapter-item"><span class="ch-name">🟦 综合分析+实战演练</span><span class="ch-count">3课时</span></li>
+        </ul>
+      </div>
+      <div class="teacher-card">
+        <div class="teacher-header"><div class="teacher-avatar gx">郭</div><div><div class="teacher-name">郭熙</div><div class="teacher-subject">言语理解系统课 · 9课时</div></div></div>
+        <div class="teacher-stats"><div class="t-stat"><div class="val">9</div><div class="lbl">总课时</div></div><div class="t-stat"><div class="val">~18h</div><div class="lbl">总时长</div></div><div class="t-stat"><div class="val">3模块</div><div class="lbl">知识板块</div></div></div>
+        <ul class="chapter-list">
+          <li class="chapter-item"><span class="ch-name">🟧 片段阅读（主旨/意图/细节）</span><span class="ch-count">4课时</span></li>
+          <li class="chapter-item"><span class="ch-name">🟧 逻辑填空（语境+词语辨析）</span><span class="ch-count">3课时</span></li>
+          <li class="chapter-item"><span class="ch-name">🟧 语句表达（排序/衔接/推断）</span><span class="ch-count">2课时</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip-box">
+      <h4>📋 学习策略</h4>
+      <p>1. <strong>交叉学习法</strong>：每天安排2-3个模块交替推进，避免单一模块疲劳。</p>
+      <p>2. <strong>听课+笔记+练习</strong>：每节课后花15分钟整理笔记，再做15-20道对应练习题巩固。</p>
+      <p>3. <strong>刷题巩固</strong>：花生十三刷题8讲安排在理论课结束后集中攻克。</p>
+      <p>4. <strong>灵活调整</strong>：如有特殊情况可前后调整1-2天，但尽量不堆积。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==================== 央国企备考面板 ==================== -->
+<div class="nav-panel" id="panel-guoqi">
+
+  <!-- 央国企概况 -->
+  <div class="gq-overview">
+    <div class="gq-module-card">
+      <div class="module-icon">🧮</div>
+      <div class="module-name">行测（职测）</div>
+      <div class="module-desc">数量关系、言语理解、判断推理、资料分析、常识判断</div>
+      <span class="module-priority priority-high">⭐⭐⭐ 核心必考</span>
+    </div>
+    <div class="gq-module-card">
+      <div class="module-icon">📰</div>
+      <div class="module-name">公基 + 时政</div>
+      <div class="module-desc">政治理论、法律基础、经济常识、时事政治</div>
+      <span class="module-priority priority-high">⭐⭐⭐ 高频考点</span>
+    </div>
+    <div class="gq-module-card">
+      <div class="module-icon">🏭</div>
+      <div class="module-name">企业文化</div>
+      <div class="module-desc">目标企业500强排名、核心价值观、业务重点、品牌</div>
+      <span class="module-priority priority-mid">⭐⭐ 考前突击</span>
+    </div>
+    <div class="gq-module-card">
+      <div class="module-icon">✍️</div>
+      <div class="module-name">申论（写作）</div>
+      <div class="module-desc">材料分析、公文写作、议论文/应用文</div>
+      <span class="module-priority priority-mid">⭐⭐ 部分企业考</span>
+    </div>
+    <div class="gq-module-card">
+      <div class="module-icon">🔬</div>
+      <div class="module-name">专业知识</div>
+      <div class="module-desc">根据目标岗位：金融/通信/能源/建筑/IT等</div>
+      <span class="module-priority priority-mid">⭐⭐ 按岗备考</span>
+    </div>
+    <div class="gq-module-card">
+      <div class="module-icon">🇬🇧</div>
+      <div class="module-name">英语</div>
+      <div class="module-desc">单选、阅读理解为主，银行类占比大</div>
+      <span class="module-priority priority-low">⭐ 部分企业考</span>
+    </div>
+  </div>
+
+  <!-- 备考阶段 -->
+  <h3 style="margin-bottom:16px;font-size:17px;">📅 央国企备考时间线（7月 → 11月秋招）</h3>
+  <div class="timeline-grid">
+    <div class="timeline-card phase1">
+      <h4>🔰 第一阶段：基础夯实</h4>
+      <div class="tl-date">7月底 — 8月（约4周，与考公并行）</div>
+      <div style="font-size:13px;color:var(--text-muted);">
+        <p>• 利用考公行测课程打基础（判断推理、资料分析、言语理解已覆盖）</p>
+        <p>• 补充数量关系模块（每天30分钟速算+题型训练）</p>
+        <p>• 每天积累10个高频成语+5个时政热点</p>
+        <p>• 周末做1套央国企行测真题摸底</p>
+      </div>
+    </div>
+    <div class="timeline-card phase2">
+      <h4>🚀 第二阶段：专项突破</h4>
+      <div class="tl-date">9月（约4周）</div>
+      <div style="font-size:13px;color:var(--text-muted);">
+        <p>• 公基系统学习：政治理论 + 法律 + 经济常识</p>
+        <p>• 申论写作入门：每周2篇材料分析练习</p>
+        <p>• 锁定3-5家目标企业，研究其笔试特点</p>
+        <p>• 每天行测刷题 50 道 + 错题复盘</p>
+      </div>
+    </div>
+    <div class="timeline-card phase3">
+      <h4>🎯 第三阶段：冲刺模拟</h4>
+      <div class="tl-date">10月（约4周）</div>
+      <div style="font-size:13px;color:var(--text-muted);">
+        <p>• 目标企业文化突击背诵（考前2-3天过一遍）</p>
+        <p>• 专业知识查漏补缺（按岗位针对性复习）</p>
+        <p>• 每周3套全真模拟卷，严格计时</p>
+        <p>• 英语：每天20分钟阅读保持语感</p>
+      </div>
+    </div>
+    <div class="timeline-card phase4">
+      <h4>🏁 第四阶段：秋招实战</h4>
+      <div class="tl-date">11月起</div>
+      <div style="font-size:13px;color:var(--text-muted);">
+        <p>• 网申投递 + 笔试 + 面试同步推进</p>
+        <p>• 每次笔试后复盘，针对薄弱点补充</p>
+        <p>• 准备半结构化面试常见问题</p>
+        <p>• 无领导小组讨论模拟练习</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 央国企每日任务 -->
+  <h3 style="margin-bottom:16px;font-size:17px;">✅ 央国企每日任务（7/29起，与考公并行）</h3>
+  <div class="gq-phase" id="gqTaskContainer"></div>
+
+  <div class="tip-box">
+    <h4>💡 央国企 vs 公务员备考策略</h4>
+    <p>1. <strong>行测是最大公约数</strong>：考公的行测课程（判断、资料、言语）完全覆盖央国企行测的核心三模块，一举两得。</p>
+    <p>2. <strong>差异化补充</strong>：央国企额外需要准备公基时政、企业文化和专业知识，利用碎片时间积累即可。</p>
+    <p>3. <strong>英语不可轻视</strong>：若目标包含五大行，英语占比可达40%+，需提前3个月积累词汇。</p>
+    <p>4. <strong>先广后精</strong>：7-8月广撒网打基础，9月锁定目标企业精准发力，10月冲刺。</p>
+  </div>
+
+  <!-- 央国企招聘信息推送 -->
+  <h3 style="margin-bottom:16px;margin-top:28px;font-size:17px;">📬 央国企招聘信息推送（每日更新）</h3>
+  <div style="margin-bottom:12px;font-size:12px;color:var(--text-muted);display:flex;gap:20px;flex-wrap:wrap;">
+    <span>🎯 目标画像：27届 · 会计学 · 预备党员 · 学生干部 · 到手7000+</span>
+    <span>📍 优先：重庆地区 → 广东地区</span>
+    <span id="recruitUpdateTime" style="color:var(--accent-4);">🕐 更新于 2026-07-28</span>
+  </div>
+
+  <!-- 筛选条件 -->
+  <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;" id="recruitFilterBtns">
+    <button class="recruit-filter active" onclick="filterRecruit('all')" style="padding:5px 14px;border:1px solid var(--border);border-radius:20px;background:transparent;color:var(--text-muted);cursor:pointer;font-size:12px;font-weight:600;">全部</button>
+    <button class="recruit-filter" onclick="filterRecruit('cq')" style="padding:5px 14px;border:1px solid var(--border);border-radius:20px;background:transparent;color:var(--text-muted);cursor:pointer;font-size:12px;font-weight:600;">📍 重庆</button>
+    <button class="recruit-filter" onclick="filterRecruit('gd')" style="padding:5px 14px;border:1px solid var(--border);border-radius:20px;background:transparent;color:var(--text-muted);cursor:pointer;font-size:12px;font-weight:600;">📍 广东</button>
+    <button class="recruit-filter" onclick="filterRecruit('hot')" style="padding:5px 14px;border:1px solid var(--border);border-radius:20px;background:transparent;color:var(--text-muted);cursor:pointer;font-size:12px;font-weight:600;">🔥 即将截止</button>
+    <button class="recruit-filter" onclick="filterRecruit('matched')" style="padding:5px 14px;border:1px solid var(--border);border-radius:20px;background:transparent;color:var(--text-muted);cursor:pointer;font-size:12px;font-weight:600;">✅ 高度匹配</button>
+  </div>
+
+  <div id="recruitList" class="recruit-list"></div>
+
+  <div style="margin-top:16px;font-size:12px;color:var(--text-muted);background:rgba(244,114,182,0.06);border:1px dashed rgba(244,114,182,0.2);border-radius:8px;padding:12px 16px;">
+    💬 <strong>说明</strong>：招聘信息基于国资央企招聘平台、各省国资委官网、主流校招平台整合。标注"高度匹配"的岗位已核实符合您的学历/专业/政治面貌/薪资要求。秋招提前批正在火热进行中，建议尽早投递！
+  </div>
+
+</div>
+
+</div><!-- .container -->
+
+<script>
+// ============ PWA Setup ============
+let deferredPrompt = null;
+let swRegistration = null;
+
+// Register Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js', { scope: '/xiangshangzou/' })
+      .then(reg => {
+        swRegistration = reg;
+        console.log('[向上走] SW registered:', reg.scope);
+        
+        // Check for updates
+        reg.addEventListener('updatefound', () => {
+          const newWorker = reg.installing;
+          if (!newWorker) return;
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              showUpdateToast();
+            }
+          });
+        });
+        
+        // Periodic update check
+        setInterval(() => {
+          reg.update().catch(() => {});
+        }, 60 * 60 * 1000); // Every hour
+      })
+      .catch(err => console.log('[向上走] SW registration failed:', err));
+  });
+  
+  // Handle SW updates
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    console.log('[向上走] New SW activated');
+  });
+}
+
+// Install prompt
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  // Show install banner after 3 seconds
+  setTimeout(() => {
+    if (localStorage.getItem('install-dismissed') !== 'true') {
+      document.getElementById('installBanner').classList.add('show');
+    }
+  }, 3000);
+});
+
+window.addEventListener('appinstalled', () => {
+  console.log('[向上走] App installed successfully!');
+  deferredPrompt = null;
+  document.getElementById('installBanner').classList.remove('show');
+});
+
+function installApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(result => {
+      console.log('[向上走] Install result:', result.outcome);
+      deferredPrompt = null;
+      document.getElementById('installBanner').classList.remove('show');
+    });
+  }
+}
+
+function dismissInstall() {
+  document.getElementById('installBanner').classList.remove('show');
+  localStorage.setItem('install-dismissed', 'true');
+  // Re-show after 3 days
+  setTimeout(() => localStorage.removeItem('install-dismissed'), 3 * 24 * 60 * 60 * 1000);
+}
+
+// Update handling
+function showUpdateToast() {
+  document.getElementById('updateToast').classList.add('show');
+}
+
+function applyUpdate() {
+  document.getElementById('updateToast').classList.remove('show');
+  if (swRegistration && swRegistration.waiting) {
+    swRegistration.waiting.postMessage('SKIP_WAITING');
+  }
+  window.location.reload();
+}
+
+// Splash screen
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('splashScreen').classList.remove('show');
+  }, 1200);
+});
+
+// Bottom nav
+function bottomNavTo(nav, btn) {
+  switchNav(nav);
+  document.querySelectorAll('.bottom-nav .bn-item').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+
+// Detect standalone mode
+if (window.matchMedia('(display-mode: standalone)').matches || navigator.standalone) {
+  document.body.classList.add('app-mode');
+  document.getElementById('installBanner').classList.remove('show');
+}
+
+window.matchMedia('(display-mode: standalone)').addEventListener('change', (e) => {
+  if (e.matches) {
+    document.body.classList.add('app-mode');
+    document.getElementById('installBanner').classList.remove('show');
+  } else {
+    document.body.classList.remove('app-mode');
+  }
+});
+</script>
+
+<script>
+// ============ 考公每日任务数据 ============
+const dailyTasks = [
+  { day:1, date:"7月29日", weekday:"周二", tasks:[
+    {label:"花生十三·逻辑判断 第1讲 (1)(2)", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"高照·速算技巧 第1讲", tag:"gz", tagText:"高照资料", type:"course"},
+    {label:"郭熙·片段阅读 第1讲", tag:"gx", tagText:"郭熙言语", type:"course"},
+    {label:"📝 逻辑判断15题 + 速算10题 + 片段阅读10题", tag:"practice", tagText:"课后练习", type:"practice"},
+  ]},
+  { day:2, date:"7月30日", weekday:"周三", tasks:[
+    {label:"花生十三·逻辑判断 第2讲 (1)(2)", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"高照·速算技巧 第2讲", tag:"gz", tagText:"高照资料", type:"course"},
+    {label:"郭熙·片段阅读 第2讲", tag:"gx", tagText:"郭熙言语", type:"course"},
+    {label:"📝 逻辑判断15题 + 速算10题 + 片段阅读10题", tag:"practice", tagText:"课后练习", type:"practice"},
+  ]},
+  { day:3, date:"7月31日", weekday:"周四", tasks:[
+    {label:"花生十三·逻辑判断 第3讲 (1)(2)", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"高照·增长率与增长量 第1讲", tag:"gz", tagText:"高照资料", type:"course"},
+    {label:"郭熙·片段阅读 第3讲", tag:"gx", tagText:"郭熙言语", type:"course"},
+    {label:"📝 逻辑判断15题 + 增长率10题 + 片段阅读10题", tag:"practice", tagText:"课后练习", type:"practice"},
+  ]},
+  { day:4, date:"8月1日", weekday:"周五", tasks:[
+    {label:"花生十三·逻辑判断 第4讲 (1)(2)", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"高照·增长率与增长量 第2讲", tag:"gz", tagText:"高照资料", type:"course"},
+    {label:"郭熙·片段阅读 第4讲", tag:"gx", tagText:"郭熙言语", type:"course"},
+    {label:"📝 逻辑判断15题 + 增长率10题 + 片段阅读10题", tag:"practice", tagText:"课后练习", type:"practice"},
+  ]},
+  { day:5, date:"8月2日", weekday:"周六", tasks:[
+    {label:"花生十三·逻辑判断 第5讲 (1)(2)", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"高照·增长率与增长量 第3讲", tag:"gz", tagText:"高照资料", type:"course"},
+    {label:"郭熙·逻辑填空 第1讲", tag:"gx", tagText:"郭熙言语", type:"course"},
+    {label:"📝 逻辑判断15题 + 增长率10题 + 逻辑填空10题", tag:"practice", tagText:"课后练习", type:"practice"},
+  ]},
+  { day:6, date:"8月3日", weekday:"周日", tasks:[
+    {label:"花生十三·逻辑判断 第6讲 (1)(2)", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"高照·增长率与增长量 第4讲", tag:"gz", tagText:"高照资料", type:"course"},
+    {label:"郭熙·逻辑填空 第2讲", tag:"gx", tagText:"郭熙言语", type:"course"},
+    {label:"📝 逻辑判断15题 + 增长率10题 + 逻辑填空10题", tag:"practice", tagText:"课后练习", type:"practice"},
+  ]},
+  { day:7, date:"8月4日", weekday:"周一", tasks:[
+    {label:"花生十三·逻辑判断 第7讲 (1)(2)", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"高照·比重与平均数 第1讲", tag:"gz", tagText:"高照资料", type:"course"},
+    {label:"郭熙·逻辑填空 第3讲", tag:"gx", tagText:"郭熙言语", type:"course"},
+    {label:"📝 逻辑判断15题 + 比重10题 + 逻辑填空10题", tag:"practice", tagText:"课后练习", type:"practice"},
+  ]},
+  { day:8, date:"8月5日", weekday:"周二", tasks:[
+    {label:"花生十三·逻辑判断 第8讲 (1)(2)", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"高照·比重与平均数 第2讲", tag:"gz", tagText:"高照资料", type:"course"},
+    {label:"郭熙·语句表达 第1讲", tag:"gx", tagText:"郭熙言语", type:"course"},
+    {label:"📝 逻辑判断15题 + 比重10题 + 语句表达10题", tag:"practice", tagText:"课后练习", type:"practice"},
+  ]},
+  { day:9, date:"8月6日", weekday:"周三", tasks:[
+    {label:"花生十三·逻辑判断 第9讲 (1)(2)", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"高照·比重与平均数 第3讲", tag:"gz", tagText:"高照资料", type:"course"},
+    {label:"郭熙·语句表达 第2讲", tag:"gx", tagText:"郭熙言语", type:"course"},
+    {label:"📝 逻辑判断15题 + 比重10题 + 语句表达10题", tag:"practice", tagText:"课后练习", type:"practice"},
+  ]},
+  { day:10, date:"8月7日", weekday:"周四", tasks:[
+    {label:"花生十三·逻辑判断 第10讲 (1)(2)", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"高照·比重与平均数 第4讲", tag:"gz", tagText:"高照资料", type:"course"},
+    {label:"郭熙·言语思维导图整理复习", tag:"gx", tagText:"郭熙言语", type:"course"},
+    {label:"📝 逻辑判断15题 + 比重10题 + 言语综合20题", tag:"practice", tagText:"课后练习", type:"practice"},
+  ]},
+  { day:11, date:"8月8日", weekday:"周五", tasks:[
+    {label:"花生十三·逻辑判断 第11讲 (1)(2)", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"高照·倍数与比值 第1讲", tag:"gz", tagText:"高照资料", type:"course"},
+    {label:"花生十三·逻辑思维导图1", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"📝 逻辑判断15题 + 倍数比值10题", tag:"practice", tagText:"课后练习", type:"practice"},
+  ]},
+  { day:12, date:"8月9日", weekday:"周六", tasks:[
+    {label:"花生十三·逻辑判断 第12讲 (1)(2)", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"高照·倍数与比值 第2讲", tag:"gz", tagText:"高照资料", type:"course"},
+    {label:"花生十三·逻辑总结 + 思维导图2", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"📝 逻辑判断综合20题 + 倍数比值10题", tag:"practice", tagText:"课后练习", type:"practice"},
+  ]},
+  { day:13, date:"8月10日", weekday:"周日", tasks:[
+    {label:"花生十三·图推 第1讲 (1)(2)", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"高照·倍数与比值 第3讲", tag:"gz", tagText:"高照资料", type:"course"},
+    {label:"花生十三·图推 第2讲 (1)(2)", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"📝 图推20题 + 倍数比值10题", tag:"practice", tagText:"课后练习", type:"practice"},
+  ]},
+  { day:14, date:"8月11日", weekday:"周一", tasks:[
+    {label:"花生十三·图推 第3讲 (1)(2)", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"高照·综合分析+实战 第1讲", tag:"gz", tagText:"高照资料", type:"course"},
+    {label:"花生十三·图推 第4讲 (1)(2)", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"📝 图推20题 + 资料分析综合10题", tag:"practice", tagText:"课后练习", type:"practice"},
+  ]},
+  { day:15, date:"8月12日", weekday:"周二", tasks:[
+    {label:"花生十三·图推 第5讲 + 思维导图", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"高照·综合分析+实战 第2讲", tag:"gz", tagText:"高照资料", type:"course"},
+    {label:"花生十三·定义判断 第1讲 (1)(2)", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"📝 图推综合15题 + 定义判断10题 + 资料分析10题", tag:"practice", tagText:"课后练习", type:"practice"},
+  ]},
+  { day:16, date:"8月13日", weekday:"周三", tasks:[
+    {label:"花生十三·定义判断 第2讲 + 类比 第1讲", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"高照·综合分析+实战 第3讲", tag:"gz", tagText:"高照资料", type:"course"},
+    {label:"花生十三·类比推理 第2讲", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"📝 定义判断10题 + 类比推理15题 + 资料分析10题", tag:"practice", tagText:"课后练习", type:"practice"},
+  ]},
+  { day:17, date:"8月14日", weekday:"周四", tasks:[
+    {label:"花生十三·判断刷题 第1-4讲", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"花生十三·判断刷题 第5-8讲", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"三大模块总复习：笔记整理+错题回顾", tag:"gx", tagText:"综合复习", type:"course"},
+    {label:"📝 判断推理综合模拟 40题", tag:"practice", tagText:"课后练习", type:"practice"},
+  ]},
+  { day:18, date:"8月15日", weekday:"周五", tasks:[
+    {label:"综合模拟：判断推理专项 30题", tag:"hs", tagText:"花生判断", type:"course"},
+    {label:"综合模拟：资料分析专项 20题", tag:"gz", tagText:"高照资料", type:"course"},
+    {label:"综合模拟：言语理解专项 20题", tag:"gx", tagText:"郭熙言语", type:"course"},
+    {label:"📝 三模块全真模拟套卷（限时120分钟）", tag:"practice", tagText:"课后练习", type:"practice"},
+  ]},
+];
+
+// ============ 课后练习题本数据 ============
+const practiceModules = [
+  {
+    title: "🧠 花生十三 · 判断推理练习",
+    color: "hs",
+    items: [
+      {label:"逻辑判断·直言命题与三段论", qty:"20题"},
+      {label:"逻辑判断·联言选言命题", qty:"20题"},
+      {label:"逻辑判断·假言命题推理", qty:"20题"},
+      {label:"逻辑判断·加强削弱题型", qty:"25题"},
+      {label:"逻辑判断·前提假设题型", qty:"20题"},
+      {label:"逻辑判断·解释评价题型", qty:"20题"},
+      {label:"逻辑判断·归纳推理", qty:"15题"},
+      {label:"图形推理·位置类+样式类", qty:"25题"},
+      {label:"图形推理·数量类+属性类", qty:"25题"},
+      {label:"图形推理·立体图形+空间重构", qty:"20题"},
+      {label:"定义判断·单定义+多定义", qty:"25题"},
+      {label:"类比推理·语义+逻辑+语法关系", qty:"25题"},
+      {label:"判断推理·综合模拟套卷", qty:"40题"},
+    ]
+  },
+  {
+    title: "📊 高照 · 资料分析练习",
+    color: "gz",
+    items: [
+      {label:"速算技巧·截位直除+特征数字", qty:"15题"},
+      {label:"增长率·一般增长率+混合增长率", qty:"20题"},
+      {label:"增长量·年均增长量+同比环比", qty:"20题"},
+      {label:"比重·现期比重+基期比重+比重差", qty:"20题"},
+      {label:"平均数·现期平均+基期平均+平均数增长率", qty:"20题"},
+      {label:"倍数与比值·现期倍数+基期倍数", qty:"15题"},
+      {label:"综合分析·资料分析套题", qty:"20题"},
+    ]
+  },
+  {
+    title: "📝 郭熙 · 言语理解练习",
+    color: "gx",
+    items: [
+      {label:"片段阅读·主旨概括题", qty:"20题"},
+      {label:"片段阅读·意图判断题", qty:"20题"},
+      {label:"片段阅读·细节理解题", qty:"15题"},
+      {label:"逻辑填空·实词辨析", qty:"25题"},
+      {label:"逻辑填空·成语辨析", qty:"25题"},
+      {label:"逻辑填空·混合填空", qty:"20题"},
+      {label:"语句表达·语句排序+衔接+推断", qty:"20题"},
+      {label:"言语理解·综合模拟套卷", qty:"30题"},
+    ]
+  }
+];
+
+// ============ 央国企每日任务数据 ============
+const gqDailyTasks = [
+  {label:"数量关系速算训练（30分钟）", cat:"行测"},
+  {label:"时政热点积累（阅读人民网/新华网 15分钟）", cat:"公基"},
+  {label:"高频成语积累（每天10个）", cat:"言语"},
+  {label:"英语词汇积累（每天20个+晨读10分钟）", cat:"英语"},
+  {label:"周末任务：央国企行测真题1套（限时120分钟）", cat:"综合"},
+];
+
+// ============ 渲染函数 ============
+const today = new Date();
+const todayStr = `${today.getMonth()+1}月${today.getDate()}日`;
+
+function renderSchedule() {
+  const grid = document.getElementById('scheduleGrid');
+  let totalCompleted = 0, totalTasks = 0;
+
+  grid.innerHTML = dailyTasks.map(day => {
+    const isToday = day.date === todayStr;
+    const dayClass = isToday ? 'today' : '';
+    const courseTasks = day.tasks.filter(t => t.type === 'course');
+    const practiceTasks = day.tasks.filter(t => t.type === 'practice');
+
+    const renderTaskList = (tasks, prefix) => tasks.map((t, ti) => {
+      const taskId = `task-${day.day}-${prefix}-${ti}`;
+      const checked = localStorage.getItem(taskId) === 'true';
+      if (checked) totalCompleted++;
+      totalTasks++;
+      return `<div class="task-row">
+        <input type="checkbox" class="task-checkbox" id="${taskId}" ${checked?'checked':''} onchange="toggleTask('${taskId}')">
+        <label for="${taskId}" class="task-label">${t.label}</label>
+        <span class="task-tag ${t.tag}">${t.tagText}</span>
+      </div>`;
+    }).join('');
+
+    return `<div class="day-card ${dayClass}" id="day-${day.day}">
+      <div class="day-header">
+        <div class="day-badge">Day ${day.day}</div>
+        <div class="day-date">${day.date}</div>
+        <div class="day-weekday">${day.weekday}</div>
+        <div style="flex:1;text-align:right;font-size:12px;color:var(--text-muted);">共 <strong>${day.tasks.length}</strong> 项</div>
+      </div>
+      <div class="day-content">
+        <div>
+          <div class="day-col-title">📺 课程学习</div>
+          ${renderTaskList(courseTasks, 'c')}
+        </div>
+        <div>
+          <div class="day-col-title">📝 课后练习</div>
+          ${renderTaskList(practiceTasks, 'p')}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  updateProgress(totalCompleted, totalTasks);
+  document.getElementById('totalTasks').textContent = totalTasks;
+}
+
+function renderPractice() {
+  const grid = document.getElementById('practiceGrid');
+  grid.innerHTML = practiceModules.map(mod => `
+    <div class="practice-card">
+      <h4>${mod.title}</h4>
+      <ul class="practice-list">
+        ${mod.items.map((item, i) => {
+          const pid = `practice-${mod.title.replace(/[^a-zA-Z]/g,'')}-${i}`;
+          const done = localStorage.getItem(pid) === 'true';
+          return `<li class="practice-item">
+            <span>${item.label}</span>
+            <span class="pq">${item.qty}</span>
+            <input type="checkbox" class="task-checkbox" id="${pid}" ${done?'checked':''} onchange="togglePracticeCheck('${pid}')">
+          </li>`;
+        }).join('')}
+      </ul>
+    </div>
+  `).join('');
+}
+
+function renderGQTasks() {
+  const container = document.getElementById('gqTaskContainer');
+  container.innerHTML = `
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+      <span class="phase-tag" style="background:rgba(244,114,182,0.2);color:var(--accent-4);">每日必做</span>
+      <span style="font-size:12px;color:var(--text-muted);">每天30-60分钟，与考公学习并行</span>
+    </div>
+    <div class="gq-task-grid">
+      ${gqDailyTasks.map((t, i) => {
+        const gid = `gq-task-${i}`;
+        const done = localStorage.getItem(gid) === 'true';
+        return `<div class="gq-task-item">
+          <input type="checkbox" class="gq-check" id="${gid}" ${done?'checked':''} onchange="toggleGQTask('${gid}')">
+          <label for="${gid}" class="gq-label">${t.label}</label>
+          <span style="font-size:10px;padding:2px 8px;border-radius:10px;background:rgba(244,114,182,0.15);color:var(--accent-4);">${t.cat}</span>
+        </div>`;
+      }).join('')}
+    </div>
+    <div style="margin-top:12px;font-size:12px;color:var(--text-muted);">
+      📌 <strong>每日时间分配建议</strong>：考公课程 3-4h（上午/下午）+ 央国企补充 0.5-1h（碎片时间）+ 晚间复习 0.5h
+    </div>
+  `;
+}
+
+// ============ 交互逻辑 ============
+function toggleTask(taskId) {
+  const el = document.getElementById(taskId);
+  localStorage.setItem(taskId, el.checked);
+  updateAllProgress();
+}
+
+function togglePracticeCheck(pid) {
+  const el = document.getElementById(pid);
+  localStorage.setItem(pid, el.checked);
+}
+
+function toggleGQTask(gid) {
+  const el = document.getElementById(gid);
+  localStorage.setItem(gid, el.checked);
+}
+
+// ============ 央国企招聘信息数据 ============
+// 更新日期：2026-07-28，数据来源：国资央企招聘平台、各省国资委、主流校招平台
+const recruitData = [
+  {
+    id: 1,
+    company: "南方电网（中国南方电网有限责任公司）",
+    title: "财会类岗位（会计核算/财务管理）",
+    location: "重庆、广东（广州/深圳/东莞/佛山等）",
+    locationTag: "cq",
+    salary: "本科月薪7000-9000元（税前），到手约6000-7500元；广东地区转正后年薪18-25万",
+    salaryTag: "到手7000+",
+    deadline: "2026年9月-11月（秋招正式批）",
+    deadlineTag: "9月启动",
+    type: "秋招",
+    requirements: "27届应届生 · 财会类专业 · 本科及以上 · 党员/学生干部优先",
+    matchLevel: "high",
+    matchNote: "会计学对口，预备党员+学生干部有加分",
+    link: "https://zhaopin.csg.cn/",
+    hot: false
+  },
+  {
+    id: 2,
+    company: "国家电网（各省电力公司）",
+    title: "财务会计岗",
+    location: "重庆、广东及全国各省市",
+    locationTag: "cq",
+    salary: "本科年薪12-18万（含年终），月到手约7000-9000元",
+    salaryTag: "到手7000+",
+    deadline: "2026年11月中旬（网申）",
+    deadlineTag: "11月截止",
+    type: "秋招",
+    requirements: "27届应届生 · 财会类专业 · 本科及以上 · 英语四级",
+    matchLevel: "high",
+    matchNote: "重庆/广东均有大量地市岗位，会计学专业对口",
+    link: "https://zhaopin.sgcc.com.cn/",
+    hot: false
+  },
+  {
+    id: 3,
+    company: "中国建筑集团（中建各工程局）",
+    title: "财务管理岗/会计核算岗",
+    location: "重庆、广东（广州/深圳/珠海）及全国",
+    locationTag: "cq",
+    salary: "本科年薪10-15万（含补贴），到手约6500-8000元/月",
+    salaryTag: "到手7000+",
+    deadline: "2026年9月-11月（秋招）",
+    deadlineTag: "9月启动",
+    type: "秋招",
+    requirements: "27届应届生 · 财会/审计专业 · 本科及以上 · 党员优先",
+    matchLevel: "high",
+    matchNote: "中建各工程局在渝、粤均有分支机构，财务岗常年大量招聘",
+    link: "https://hr.cscec.com/",
+    hot: false
+  },
+  {
+    id: 4,
+    company: "中国中铁/中铁建",
+    title: "财务管理岗/会计岗",
+    location: "重庆、广东及全国",
+    locationTag: "cq",
+    salary: "本科年薪10-14万，到手约6500-8000元/月",
+    salaryTag: "到手7000+",
+    deadline: "2026年9月-11月",
+    deadlineTag: "9月启动",
+    type: "秋招",
+    requirements: "27届应届生 · 会计学/财务管理 · 本科及以上 · 党员/学生干部优先",
+    matchLevel: "high",
+    matchNote: "基建央企财务岗稳定，预备党员+学生干部经历有优势",
+    link: "https://www.crecg.com/",
+    hot: false
+  },
+  {
+    id: 5,
+    company: "中石油/中石化",
+    title: "财务管理岗",
+    location: "重庆、广东及全国",
+    locationTag: "cq",
+    salary: "本科年薪12-16万，月到手7000-9000元",
+    salaryTag: "到手7000+",
+    deadline: "2026年9月中旬开启网申",
+    deadlineTag: "9月启动",
+    type: "秋招",
+    requirements: "27届应届生 · 会计/财务专业 · 本科及以上",
+    matchLevel: "high",
+    matchNote: "能源央企待遇优厚，重庆/广东均有分公司",
+    link: "https://zhaopin.cnpc.com.cn/",
+    hot: false
+  },
+  {
+    id: 6,
+    company: "中国移动/中国电信/中国联通",
+    title: "财务核算岗/财务管理岗",
+    location: "重庆、广东及全国各省市",
+    locationTag: "cq",
+    salary: "本科年薪12-18万，月到手7000-10000元",
+    salaryTag: "到手7000+",
+    deadline: "2026年8月底-10月",
+    deadlineTag: "8月启动",
+    type: "秋招提前批+正式批",
+    requirements: "27届应届生 · 财会类专业 · 本科及以上",
+    matchLevel: "high",
+    matchNote: "三大运营商重庆/广东分公司常年招财务岗，福利待遇好",
+    link: "https://zhaopin.chinamobile.com/",
+    hot: true
+  },
+  {
+    id: 7,
+    company: "六大国有银行（工农中建交邮储）",
+    title: "综合柜员/客户经理/财务会计岗",
+    location: "重庆、广东（广州/深圳为主）",
+    locationTag: "cq",
+    salary: "本科月薪7000-10000元（税前），到手约6000-8500元",
+    salaryTag: "到手7000+",
+    deadline: "2026年9月-10月",
+    deadlineTag: "9月启动",
+    type: "秋招",
+    requirements: "27届应届生 · 会计/经济/金融专业 · 本科及以上 · 英语四级",
+    matchLevel: "medium",
+    matchNote: "会计学对口，银行校招量大，预备党员有加分",
+    link: "https://job.icbc.com.cn/",
+    hot: false
+  },
+  {
+    id: 8,
+    company: "中国烟草（各省烟草专卖局/中烟工业）",
+    title: "财务管理岗/会计核算岗",
+    location: "重庆、广东及各省",
+    locationTag: "cq",
+    salary: "本科年薪15-20万，月到手9000-13000元",
+    salaryTag: "到手9000+",
+    deadline: "2026年11月起各省陆续发布",
+    deadlineTag: "11月启动",
+    type: "秋招",
+    requirements: "27届应届生 · 财会/审计专业 · 本科及以上 · 党员优先",
+    matchLevel: "high",
+    matchNote: "中国烟草待遇天花板，预备党员身份有显著优势",
+    link: "http://www.tobacco.gov.cn/",
+    hot: false
+  },
+  {
+    id: 9,
+    company: "山东发展投资控股集团",
+    title: "会计核算岗/财务管理岗（深圳岗）",
+    location: "广东深圳",
+    locationTag: "gd",
+    salary: "年薪约12-18万，到手7000-10000元/月",
+    salaryTag: "到手7000+",
+    deadline: "2026年7月31日",
+    deadlineTag: "即将截止!",
+    type: "春招补录",
+    requirements: "27届应届生 · 财会类专业 · 本科及以上",
+    matchLevel: "medium",
+    matchNote: "深圳岗位，含财务管理/会计核算岗，尽快投递！",
+    link: "https://www.gankinterview.cn/zh-CN/campus?tab=state",
+    hot: true
+  },
+  {
+    id: 10,
+    company: "广东宏大控股集团",
+    title: "外派财务人员（广东国企）",
+    location: "广东",
+    locationTag: "gd",
+    salary: "年薪约15-20万（含海外补贴），到手10000+",
+    salaryTag: "到手10000+",
+    deadline: "2026年7月-8月（滚动招聘）",
+    deadlineTag: "滚动招聘",
+    type: "社会招聘/校招",
+    requirements: "财会/审计专业 · 本科及以上 · 有初级会计证优先",
+    matchLevel: "medium",
+    matchNote: "广东国企，会计学专业匹配，薪资有竞争力",
+    link: "http://gzw.gd.gov.cn/214/index.html",
+    hot: false
+  },
+  {
+    id: 11,
+    company: "重庆银行",
+    title: "综合柜员/财务管理岗",
+    location: "重庆",
+    locationTag: "cq",
+    salary: "年薪12-16万，到手7000-9000元/月",
+    salaryTag: "到手7000+",
+    deadline: "2026年7月-8月（社会招聘）",
+    deadlineTag: "近期招聘",
+    type: "社会招聘",
+    requirements: "财会/金融类专业 · 本科及以上",
+    matchLevel: "medium",
+    matchNote: "重庆本地银行，会计学专业对口，关注秋招校招批次",
+    link: "https://gzw.cq.gov.cn/gqzp/",
+    hot: false
+  },
+  {
+    id: 12,
+    company: "西南证券股份有限公司",
+    title: "财务/审计相关岗位",
+    location: "重庆",
+    locationTag: "cq",
+    salary: "年薪12-18万，到手8000-10000元/月",
+    salaryTag: "到手8000+",
+    deadline: "2026年7月（近期招聘）",
+    deadlineTag: "近期招聘",
+    type: "社会招聘",
+    requirements: "财会/审计/金融专业 · 本科及以上",
+    matchLevel: "medium",
+    matchNote: "重庆本地金融国企，关注秋招校招批次",
+    link: "https://gzw.cq.gov.cn/gqzp/",
+    hot: false
+  },
+  {
+    id: 13,
+    company: "南粤集团（广东南粤集团有限公司）",
+    title: "财务管理岗/会计岗",
+    location: "广东（广州/深圳/珠海及多地）",
+    locationTag: "gd",
+    salary: "年薪12-18万，到手7000-10000元/月",
+    salaryTag: "到手7000+",
+    deadline: "2026年7月-8月（滚动招聘）",
+    deadlineTag: "近期招聘",
+    type: "校园招聘+社会招聘",
+    requirements: "27届应届生 · 财会类专业 · 本科及以上",
+    matchLevel: "high",
+    matchNote: "广东国资委直管企业，多地岗位同步热招",
+    link: "http://gzw.gd.gov.cn/214/index.html",
+    hot: false
+  },
+  {
+    id: 14,
+    company: "国家能源集团/华能/华电/大唐/国家电投",
+    title: "财务管理岗/会计核算岗",
+    location: "重庆、广东及全国",
+    locationTag: "cq",
+    salary: "本科年薪12-16万，到手7000-9000元/月",
+    salaryTag: "到手7000+",
+    deadline: "2026年9月-11月",
+    deadlineTag: "9月启动",
+    type: "秋招",
+    requirements: "27届应届生 · 财会类专业 · 本科及以上 · 党员优先",
+    matchLevel: "high",
+    matchNote: "五大发电集团财务岗常年招，会计学对口",
+    link: "https://cujiuye.iguopin.com/",
+    hot: false
+  },
+  {
+    id: 15,
+    company: "中交集团（中国交通建设集团）",
+    title: "财务管理岗/会计岗",
+    location: "重庆、广东及全国",
+    locationTag: "cq",
+    salary: "本科年薪10-15万，到手6500-8000元/月",
+    salaryTag: "到手7000+",
+    deadline: "2026年9月-11月",
+    deadlineTag: "9月启动",
+    type: "秋招",
+    requirements: "27届应届生 · 会计学/财务管理 · 本科及以上",
+    matchLevel: "high",
+    matchNote: "基建央企，财务岗稳定，在渝粤均有项目部/分公司",
+    link: "https://www.ccccltd.cn/",
+    hot: false
+  }
+];
+
+let currentFilter = 'all';
+
+function renderRecruitList() {
+  const container = document.getElementById('recruitList');
+  const filtered = currentFilter === 'all' ? recruitData :
+    currentFilter === 'hot' ? recruitData.filter(r => r.hot) :
+    currentFilter === 'matched' ? recruitData.filter(r => r.matchLevel === 'high') :
+    recruitData.filter(r => r.locationTag === currentFilter);
+
+  container.innerHTML = filtered.map(r => {
+    const saved = localStorage.getItem(`recruit-star-${r.id}`) === 'true';
+    const cardClass = [r.hot ? 'hot' : '', r.matchLevel === 'high' ? 'matched' : ''].filter(Boolean).join(' ');
+    return `
+    <div class="recruit-card ${cardClass}" data-id="${r.id}">
+      <div class="rc-main">
+        <div class="rc-title">${r.title}</div>
+        <div class="rc-company">🏢 ${r.company}</div>
+        <div class="rc-meta">
+          <span class="rc-badge ${r.locationTag === 'cq' ? 'location-cq' : 'location-gd'}">��� ${r.location}</span>
+          <span class="rc-badge salary">💰 ${r.salaryTag}</span>
+          <span class="rc-badge type">📋 ${r.type}</span>
+          ${r.deadlineTag.includes('截止') || r.deadlineTag.includes('近期') ? `<span class="rc-badge deadline">⏰ ${r.deadlineTag}</span>` : `<span class="rc-badge" style="background:rgba(148,163,184,0.15);color:var(--text-muted);">📅 ${r.deadlineTag}</span>`}
+          ${r.matchLevel === 'high' ? '<span class="rc-badge match">✅ 高度匹配</span>' : ''}
+        </div>
+        <div class="rc-requirements">
+          <div><strong>薪资：</strong>${r.salary}</div>
+          <div><strong>要求：</strong>${r.requirements}</div>
+          <div><strong>匹配分析：</strong>${r.matchNote}</div>
+          <div style="margin-top:4px;"><strong>截止时间：</strong>${r.deadline}</div>
+        </div>
+      </div>
+      <div class="rc-action">
+        <button class="rc-star ${saved ? 'saved' : ''}" onclick="toggleStar(${r.id})" title="${saved ? '取消收藏' : '收藏'}">${saved ? '⭐' : '☆'}</button>
+        <a href="${r.link}" target="_blank" class="rc-link-btn">🔗 投递入口</a>
+      </div>
+    </div>`;
+  }).join('');
+
+  // 无结果
+  if (filtered.length === 0) {
+    container.innerHTML = `<div style="text-align:center;padding:40px;color:var(--text-muted);">暂无符合条件的招聘信息，请尝试其他筛选条件</div>`;
+  }
+}
+
+function toggleStar(id) {
+  const key = `recruit-star-${id}`;
+  const current = localStorage.getItem(key) === 'true';
+  localStorage.setItem(key, !current);
+  renderRecruitList();
+}
+
+function filterRecruit(filter) {
+  currentFilter = filter;
+  document.querySelectorAll('.recruit-filter').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.recruit-filter').forEach(b => {
+    const f = b.textContent.includes('重庆') ? 'cq' : b.textContent.includes('广东') ? 'gd' :
+              b.textContent.includes('即将截止') ? 'hot' : b.textContent.includes('高度匹配') ? 'matched' : 'all';
+    if (f === filter) b.classList.add('active');
+  });
+  renderRecruitList();
+}
+
+function updateAllProgress() {
+  let totalCompleted = 0, totalTasks = 0;
+  dailyTasks.forEach(day => {
+    ['c','p'].forEach(prefix => {
+      const tasks = prefix === 'c' ? day.tasks.filter(t=>t.type==='course') : day.tasks.filter(t=>t.type==='practice');
+      tasks.forEach((t, ti) => {
+        const taskId = `task-${day.day}-${prefix}-${ti}`;
+        totalTasks++;
+        if (localStorage.getItem(taskId) === 'true') totalCompleted++;
+      });
+    });
+  });
+  updateProgress(totalCompleted, totalTasks);
+
+  dailyTasks.forEach(day => {
+    let allDone = true;
+    ['c','p'].forEach(prefix => {
+      const tasks = prefix === 'c' ? day.tasks.filter(t=>t.type==='course') : day.tasks.filter(t=>t.type==='practice');
+      tasks.forEach((t, ti) => {
+        if (localStorage.getItem(`task-${day.day}-${prefix}-${ti}`) !== 'true') allDone = false;
+      });
+    });
+    const card = document.getElementById(`day-${day.day}`);
+    if (card) {
+      if (allDone) card.classList.add('completed');
+      else card.classList.remove('completed');
+    }
+  });
+}
+
+function updateProgress(completed, total) {
+  const pct = total > 0 ? Math.round(completed / total * 100) : 0;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressPercent').textContent = pct + '%';
+  document.getElementById('completedCount').textContent = completed;
+}
+
+function switchNav(nav) {
+  document.querySelectorAll('.nav-btn').forEach(b => {
+    b.classList.remove('active');
+    if ((nav==='gongkao' && b.textContent.includes('公务员')) || (nav==='guoqi' && b.textContent.includes('央国企'))) {
+      b.classList.add('active');
+    }
+  });
+  document.getElementById('panel-gongkao').classList.toggle('active', nav==='gongkao');
+  document.getElementById('panel-guoqi').classList.toggle('active', nav==='guoqi');
+}
+
+function switchSubTab(sub) {
+  document.querySelectorAll('#panel-gongkao .sub-tab-btn').forEach(b => {
+    b.classList.remove('active');
+    const target = sub === 'gk-daily' ? '每日任务' : sub === 'gk-practice' ? '练习题本' : '课程体系';
+    if (b.textContent.includes(target)) b.classList.add('active');
+  });
+  document.getElementById('sub-gk-daily').classList.toggle('active', sub==='gk-daily');
+  document.getElementById('sub-gk-practice').classList.toggle('active', sub==='gk-practice');
+  document.getElementById('sub-gk-courses').classList.toggle('active', sub==='gk-courses');
+}
+
+// Init
+renderSchedule();
+renderPractice();
+renderGQTasks();
+renderRecruitList();
+updateAllProgress();
+</script>
+</body>
+</html>
