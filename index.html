@@ -521,7 +521,7 @@ body.app-mode { padding-bottom: 60px; }
   <div style="margin-bottom:12px;font-size:12px;color:var(--text-muted);display:flex;gap:20px;flex-wrap:wrap;">
     <span>🎯 目标画像：27届 · 会计学 · 预备党员 · 学生干部 · 到手7000+</span>
     <span>📍 优先：重庆地区 → 广东地区</span>
-    <span id="recruitUpdateTime" style="color:var(--accent-4);">🕐 更新于 2026-07-28</span>
+    <span id="recruitUpdateTime" style="color:var(--accent-4);">🕐 更新于 2026-07-29</span>
   </div>
 
   <!-- 筛选条件 -->
@@ -944,7 +944,7 @@ function toggleGQTask(gid) {
 }
 
 // ============ 央国企招聘信息数据 ============
-// 更新日期：2026-07-28，数据来源：国资央企招聘平台、各省国资委、主流校招平台
+// 更新日期：2026-07-29，数据来源：国资央企招聘平台、各省国资委、主流校招平台
 const recruitData = [
   {
     id: 1,
@@ -1084,19 +1084,19 @@ const recruitData = [
   },
   {
     id: 9,
-    company: "山东发展投资控股集团",
+    company: "山东发展集团（原山东发展投资控股集团）",
     title: "会计核算岗/财务管理岗（深圳岗）",
     location: "广东深圳",
     locationTag: "gd",
     salary: "年薪约12-18万，到手7000-10000元/月",
     salaryTag: "到手7000+",
     deadline: "2026年7月31日",
-    deadlineTag: "即将截止!",
-    type: "春招补录",
-    requirements: "27届应届生 · 财会类专业 · 本科及以上",
-    matchLevel: "medium",
-    matchNote: "深圳岗位，含财务管理/会计核算岗，尽快投递！",
-    link: "https://www.gankinterview.cn/zh-CN/campus?tab=state",
+    deadlineTag: "🔥 7/31截止!",
+    type: "校园招聘（138人）",
+    requirements: "27届/26届应届生 · 财会类专业 · 本科及以上",
+    matchLevel: "high",
+    matchNote: "山东国资委直管，深圳岗含会计核算/财务管理岗，仅剩2天！",
+    link: "https://gzw.shandong.gov.cn/articles/ch00223/202607/2dc6a0a1-3171-40b9-8dd3-d406f1fd6ee4.html",
     hot: true
   },
   {
@@ -1200,12 +1200,51 @@ const recruitData = [
     matchNote: "基建央企，财务岗稳定，在渝粤均有项目部/分公司",
     link: "https://www.ccccltd.cn/",
     hot: false
+  },
+  {
+    id: 16,
+    company: "国家能源集团",
+    title: "财务管理岗/会计核算岗",
+    location: "重庆、广东及全国",
+    locationTag: "cq",
+    salary: "本科年薪15-20万，到手8000-12000元/月",
+    salaryTag: "到手8000+",
+    deadline: "2026年7月-8月（提前批网申）",
+    deadlineTag: "🔥 热招中",
+    type: "秋招提前批",
+    requirements: "27届应届生 · 财会类专业 · 本科及以上 · 党员优先",
+    matchLevel: "high",
+    matchNote: "央企能源巨头，27届秋招已启动，重庆/广东均有岗，福利待遇一流",
+    link: "https://zhaopin.chnenergy.com.cn/",
+    hot: true
+  },
+  {
+    id: 17,
+    company: "中国航天科工/航天科技集团",
+    title: "财务管理岗/审计岗",
+    location: "重庆、广东（广州/深圳）",
+    locationTag: "cq",
+    salary: "本科年薪14-20万，到手8000-12000元/月，安家费另计",
+    salaryTag: "到手8000+",
+    deadline: "2026年7月-8月（提前批）",
+    deadlineTag: "🔥 提前批",
+    type: "秋招提前批",
+    requirements: "27届应届生 · 会计/审计专业 · 本科及以上 · 党员/学生干部优先",
+    matchLevel: "high",
+    matchNote: "航天央企，党建强，预备党员+学生干部双优势，重庆有航天巴山等子公司",
+    link: "https://zhaopin.spacechina.com/",
+    hot: true
   }
 ];
 
 let currentFilter = 'all';
 
 function renderRecruitList() {
+  // 动态更新日期
+  const now = new Date();
+  const ds = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+  document.getElementById('recruitUpdateTime').textContent = `🕐 更新于 ${ds}`;
+  
   const container = document.getElementById('recruitList');
   const filtered = currentFilter === 'all' ? recruitData :
     currentFilter === 'hot' ? recruitData.filter(r => r.hot) :
