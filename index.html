@@ -944,8 +944,11 @@ function toggleGQTask(gid) {
 }
 
 // ============ 央国企招聘信息数据 ============
-// 更新日期：2026-07-29，数据来源：国资央企招聘平台、各省国资委、主流校招平台
-const recruitData = [
+// 招聘数据独立存储于 recruit-data.json，每次打开APP自动拉取最新数据
+// 更新数据只需更新 recruit-data.json 文件，无需修改APP代码
+const RECRUIT_DATA_URL = 'https://xianglin2026.github.io/xiangshangzou/recruit-data.json';
+// 本地备用数据（当网络不可用时使用）
+const recruitDataFallback = [
   {
     id: 1,
     company: "南方电网（中国南方电网有限责任公司）",
@@ -982,57 +985,6 @@ const recruitData = [
   },
   {
     id: 3,
-    company: "中国建筑集团（中建各工程局）",
-    title: "财务管理岗/会计核算岗",
-    location: "重庆、广东（广州/深圳/珠海）及全国",
-    locationTag: "cq",
-    salary: "本科年薪10-15万（含补贴），到手约6500-8000元/月",
-    salaryTag: "到手7000+",
-    deadline: "2026年9月-11月（秋招）",
-    deadlineTag: "9月启动",
-    type: "秋招",
-    requirements: "27届应届生 · 财会/审计专业 · 本科及以上 · 党员优先",
-    matchLevel: "high",
-    matchNote: "中建各工程局在渝、粤均有分支机构，财务岗常年大量招聘",
-    link: "https://hr.cscec.com/",
-    hot: false
-  },
-  {
-    id: 4,
-    company: "中国中铁/中铁建",
-    title: "财务管理岗/会计岗",
-    location: "重庆、广东及全国",
-    locationTag: "cq",
-    salary: "本科年薪10-14万，到手约6500-8000元/月",
-    salaryTag: "到手7000+",
-    deadline: "2026年9月-11月",
-    deadlineTag: "9月启动",
-    type: "秋招",
-    requirements: "27届应届生 · 会计学/财务管理 · 本科及以上 · 党员/学生干部优先",
-    matchLevel: "high",
-    matchNote: "基建央企财务岗稳定，预备党员+学生干部经历有优势",
-    link: "https://www.crecg.com/",
-    hot: false
-  },
-  {
-    id: 5,
-    company: "中石油/中石化",
-    title: "财务管理岗",
-    location: "重庆、广东及全国",
-    locationTag: "cq",
-    salary: "本科年薪12-16万，月到手7000-9000元",
-    salaryTag: "到手7000+",
-    deadline: "2026年9月中旬开启网申",
-    deadlineTag: "9月启动",
-    type: "秋招",
-    requirements: "27届应届生 · 会计/财务专业 · 本科及以上",
-    matchLevel: "high",
-    matchNote: "能源央企待遇优厚，重庆/广东均有分公司",
-    link: "https://zhaopin.cnpc.com.cn/",
-    hot: false
-  },
-  {
-    id: 6,
     company: "中国移动/中国电信/中国联通",
     title: "财务核算岗/财务管理岗",
     location: "重庆、广东及全国各省市",
@@ -1047,203 +999,49 @@ const recruitData = [
     matchNote: "三大运营商重庆/广东分公司常年招财务岗，福利待遇好",
     link: "https://zhaopin.chinamobile.com/",
     hot: true
-  },
-  {
-    id: 7,
-    company: "六大国有银行（工农中建交邮储）",
-    title: "综合柜员/客户经理/财务会计岗",
-    location: "重庆、广东（广州/深圳为主）",
-    locationTag: "cq",
-    salary: "本科月薪7000-10000元（税前），到手约6000-8500元",
-    salaryTag: "到手7000+",
-    deadline: "2026年9月-10月",
-    deadlineTag: "9月启动",
-    type: "秋招",
-    requirements: "27届应届生 · 会计/经济/金融专业 · 本科及以上 · 英语四级",
-    matchLevel: "medium",
-    matchNote: "会计学对口，银行校招量大，预备党员有加分",
-    link: "https://job.icbc.com.cn/",
-    hot: false
-  },
-  {
-    id: 8,
-    company: "中国烟草（各省烟草专卖局/中烟工业）",
-    title: "财务管理岗/会计核算岗",
-    location: "重庆、广东及各省",
-    locationTag: "cq",
-    salary: "本科年薪15-20万，月到手9000-13000元",
-    salaryTag: "到手9000+",
-    deadline: "2026年11月起各省陆续发布",
-    deadlineTag: "11月启动",
-    type: "秋招",
-    requirements: "27届应届生 · 财会/审计专业 · 本科及以上 · 党员优先",
-    matchLevel: "high",
-    matchNote: "中国烟草待遇天花板，预备党员身份有显著优势",
-    link: "http://www.tobacco.gov.cn/",
-    hot: false
-  },
-  {
-    id: 9,
-    company: "山东发展集团（原山东发展投资控股集团）",
-    title: "会计核算岗/财务管理岗（深圳岗）",
-    location: "广东深圳",
-    locationTag: "gd",
-    salary: "年薪约12-18万，到手7000-10000元/月",
-    salaryTag: "到手7000+",
-    deadline: "2026年7月31日",
-    deadlineTag: "🔥 7/31截止!",
-    type: "校园招聘（138人）",
-    requirements: "27届/26届应届生 · 财会类专业 · 本科及以上",
-    matchLevel: "high",
-    matchNote: "山东国资委直管，深圳岗含会计核算/财务管理岗，仅剩2天！",
-    link: "https://gzw.shandong.gov.cn/articles/ch00223/202607/2dc6a0a1-3171-40b9-8dd3-d406f1fd6ee4.html",
-    hot: true
-  },
-  {
-    id: 10,
-    company: "广东宏大控股集团",
-    title: "外派财务人员（广东国企）",
-    location: "广东",
-    locationTag: "gd",
-    salary: "年薪约15-20万（含海外补贴），到手10000+",
-    salaryTag: "到手10000+",
-    deadline: "2026年7月-8月（滚动招聘）",
-    deadlineTag: "滚动招聘",
-    type: "社会招聘/校招",
-    requirements: "财会/审计专业 · 本科及以上 · 有初级会计证优先",
-    matchLevel: "medium",
-    matchNote: "广东国企，会计学专业匹配，薪资有竞争力",
-    link: "http://gzw.gd.gov.cn/214/index.html",
-    hot: false
-  },
-  {
-    id: 11,
-    company: "重庆银行",
-    title: "综合柜员/财务管理岗",
-    location: "重庆",
-    locationTag: "cq",
-    salary: "年薪12-16万，到手7000-9000元/月",
-    salaryTag: "到手7000+",
-    deadline: "2026年7月-8月（社会招聘）",
-    deadlineTag: "近期招聘",
-    type: "社会招聘",
-    requirements: "财会/金融类专业 · 本科及以上",
-    matchLevel: "medium",
-    matchNote: "重庆本地银行，会计学专业对口，关注秋招校招批次",
-    link: "https://gzw.cq.gov.cn/gqzp/",
-    hot: false
-  },
-  {
-    id: 12,
-    company: "西南证券股份有限公司",
-    title: "财务/审计相关岗位",
-    location: "重庆",
-    locationTag: "cq",
-    salary: "年薪12-18万，到手8000-10000元/月",
-    salaryTag: "到手8000+",
-    deadline: "2026年7月（近期招聘）",
-    deadlineTag: "近期招聘",
-    type: "社会招聘",
-    requirements: "财会/审计/金融专业 · 本科及以上",
-    matchLevel: "medium",
-    matchNote: "重庆本地金融国企，关注秋招校招批次",
-    link: "https://gzw.cq.gov.cn/gqzp/",
-    hot: false
-  },
-  {
-    id: 13,
-    company: "南粤集团（广东南粤集团有限公司）",
-    title: "财务管理岗/会计岗",
-    location: "广东（广州/深圳/珠海及多地）",
-    locationTag: "gd",
-    salary: "年薪12-18万，到手7000-10000元/月",
-    salaryTag: "到手7000+",
-    deadline: "2026年7月-8月（滚动招聘）",
-    deadlineTag: "近期招聘",
-    type: "校园招聘+社会招聘",
-    requirements: "27届应届生 · 财会类专业 · 本科及以上",
-    matchLevel: "high",
-    matchNote: "广东国资委直管企业，多地岗位同步热招",
-    link: "http://gzw.gd.gov.cn/214/index.html",
-    hot: false
-  },
-  {
-    id: 14,
-    company: "国家能源集团/华能/华电/大唐/国家电投",
-    title: "财务管理岗/会计核算岗",
-    location: "重庆、广东及全国",
-    locationTag: "cq",
-    salary: "本科年薪12-16万，到手7000-9000元/月",
-    salaryTag: "到手7000+",
-    deadline: "2026年9月-11月",
-    deadlineTag: "9月启动",
-    type: "秋招",
-    requirements: "27届应届生 · 财会类专业 · 本科及以上 · 党员优先",
-    matchLevel: "high",
-    matchNote: "五大发电集团财务岗常年招，会计学对口",
-    link: "https://cujiuye.iguopin.com/",
-    hot: false
-  },
-  {
-    id: 15,
-    company: "中交集团（中国交通建设集团）",
-    title: "财务管理岗/会计岗",
-    location: "重庆、广东及全国",
-    locationTag: "cq",
-    salary: "本科年薪10-15万，到手6500-8000元/月",
-    salaryTag: "到手7000+",
-    deadline: "2026年9月-11月",
-    deadlineTag: "9月启动",
-    type: "秋招",
-    requirements: "27届应届生 · 会计学/财务管理 · 本科及以上",
-    matchLevel: "high",
-    matchNote: "基建央企，财务岗稳定，在渝粤均有项目部/分公司",
-    link: "https://www.ccccltd.cn/",
-    hot: false
-  },
-  {
-    id: 16,
-    company: "国家能源集团",
-    title: "财务管理岗/会计核算岗",
-    location: "重庆、广东及全国",
-    locationTag: "cq",
-    salary: "本科年薪15-20万，到手8000-12000元/月",
-    salaryTag: "到手8000+",
-    deadline: "2026年7月-8月（提前批网申）",
-    deadlineTag: "🔥 热招中",
-    type: "秋招提前批",
-    requirements: "27届应届生 · 财会类专业 · 本科及以上 · 党员优先",
-    matchLevel: "high",
-    matchNote: "央企能源巨头，27届秋招已启动，重庆/广东均有岗，福利待遇一流",
-    link: "https://zhaopin.chnenergy.com.cn/",
-    hot: true
-  },
-  {
-    id: 17,
-    company: "中国航天科工/航天科技集团",
-    title: "财务管理岗/审计岗",
-    location: "重庆、广东（广州/深圳）",
-    locationTag: "cq",
-    salary: "本科年薪14-20万，到手8000-12000元/月，安家费另计",
-    salaryTag: "到手8000+",
-    deadline: "2026年7月-8月（提前批）",
-    deadlineTag: "🔥 提前批",
-    type: "秋招提前批",
-    requirements: "27届应届生 · 会计/审计专业 · 本科及以上 · 党员/学生干部优先",
-    matchLevel: "high",
-    matchNote: "航天央企，党建强，预备党员+学生干部双优势，重庆有航天巴山等子公司",
-    link: "https://zhaopin.spacechina.com/",
-    hot: true
   }
 ];
+// 实际使用的数据，初始为空，从远程加载
+let recruitData = [...recruitDataFallback];
 
 let currentFilter = 'all';
+
+// 从远程加载最新招聘数据
+async function fetchRecruitData() {
+  try {
+    // 添加时间戳防止缓存
+    const url = RECRUIT_DATA_URL + '?t=' + Date.now();
+    const resp = await fetch(url, { cache: 'no-cache' });
+    if (resp.ok) {
+      const json = await resp.json();
+      if (json.data && json.data.length > 0) {
+        recruitData = json.data;
+        // 更新界面上的日期
+        const el = document.getElementById('recruitUpdateTime');
+        if (el && json.updated) {
+          el.textContent = `🕐 更新于 ${json.updated}`;
+        }
+        console.log('[向上走] 招聘数据已更新，共 ' + recruitData.length + ' 条');
+        return true;
+      }
+    }
+    throw new Error('Invalid response');
+  } catch(e) {
+    console.log('[向上走] 远程数据加载失败，使用本地缓存', e.message);
+    return false;
+  }
+}
 
 function renderRecruitList() {
   // 动态更新日期
   const now = new Date();
   const ds = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
-  document.getElementById('recruitUpdateTime').textContent = `🕐 更新于 ${ds}`;
+  const el = document.getElementById('recruitUpdateTime');
+  if (el && el.textContent.includes('加载中')) {
+    // 如果正在加载中，保持显示"加载中"
+  } else if (el && !el.textContent.includes('更新于')) {
+    el.textContent = `🕐 更新于 ${ds}`;
+  }
   
   const container = document.getElementById('recruitList');
   const filtered = currentFilter === 'all' ? recruitData :
@@ -1367,7 +1165,16 @@ function switchSubTab(sub) {
 renderSchedule();
 renderPractice();
 renderGQTasks();
-renderRecruitList();
+// 先显示加载中，然后拉取远程数据
+document.getElementById('recruitUpdateTime').textContent = '🕐 加载中...';
+fetchRecruitData().then(updated => {
+  if (updated) {
+    console.log('[向上走] 招聘信息已从远程更新');
+  } else {
+    console.log('[向上走] 使用本地缓存的招聘信息');
+  }
+  renderRecruitList();
+});
 updateAllProgress();
 </script>
 </body>
