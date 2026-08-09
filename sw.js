@@ -1,13 +1,14 @@
 // Service Worker for "向上走" PWA
 // Version: auto-generated on each update
-const CACHE_NAME = 'xiangshangzou-v1';
-const APP_VERSION = '1.0.0';
+const CACHE_NAME = 'xiangshangzou-v1.1.1';
+const APP_VERSION = '1.1.1';
 
 // Files to cache for offline use
 const STATIC_ASSETS = [
   '/xiangshangzou/',
   '/xiangshangzou/index.html',
   '/xiangshangzou/manifest.json',
+  '/xiangshangzou/app-config.json',
   '/xiangshangzou/icons/icon-72x72.png',
   '/xiangshangzou/icons/icon-96x96.png',
   '/xiangshangzou/icons/icon-128x128.png',

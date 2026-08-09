@@ -1028,18 +1028,21 @@ async function fetchRecruitData() {
     throw new Error('Invalid response');
   } catch(e) {
     console.log('[向上走] 远程数据加载失败，使用本地缓存', e.message);
+    // 即使远程加载失败，也要显示日期，避免一直卡在"加载中"
+    const el = document.getElementById('recruitUpdateTime');
+    if (el && el.textContent.includes('加载中')) {
+      el.textContent = '🕐 网络异常，显示本地数据';
+    }
     return false;
   }
 }
 
 function renderRecruitList() {
-  // 动态更新日期
+  // 动态更新日期：如果当前显示"加载中"或空白，则使用当前日期
   const now = new Date();
   const ds = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
   const el = document.getElementById('recruitUpdateTime');
-  if (el && el.textContent.includes('加载中')) {
-    // 如果正在加载中，保持显示"加载中"
-  } else if (el && !el.textContent.includes('更新于')) {
+  if (el && (el.textContent.includes('加载中') || el.textContent.trim() === '')) {
     el.textContent = `🕐 更新于 ${ds}`;
   }
   
@@ -1166,13 +1169,17 @@ renderSchedule();
 renderPractice();
 renderGQTasks();
 // 先显示加载中，然后拉取远程数据
-document.getElementById('recruitUpdateTime').textContent = '🕐 加载中...';
+const recruitUpdateEl = document.getElementById('recruitUpdateTime');
+if (recruitUpdateEl) recruitUpdateEl.textContent = '🕐 加载中...';
 fetchRecruitData().then(updated => {
   if (updated) {
     console.log('[向上走] 招聘信息已从远程更新');
   } else {
     console.log('[向上走] 使用本地缓存的招聘信息');
   }
+  renderRecruitList();
+}).catch(() => {
+  console.log('[向上走] 招聘信息加载异常，渲染本地数据');
   renderRecruitList();
 });
 updateAllProgress();
