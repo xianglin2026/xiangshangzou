@@ -1,7 +1,7 @@
 // Service Worker for "向上走" PWA
-// Version: auto-generated on each update
-const CACHE_NAME = 'xiangshangzou-v1.1.1';
-const APP_VERSION = '1.1.1';
+// Version: 1.2.0 - 强制更新策略，修复"加载中"问题
+const CACHE_NAME = 'xiangshangzou-v1.2.0';
+const APP_VERSION = '1.2.0';
 
 // Files to cache for offline use
 const STATIC_ASSETS = [
@@ -9,6 +9,7 @@ const STATIC_ASSETS = [
   '/xiangshangzou/index.html',
   '/xiangshangzou/manifest.json',
   '/xiangshangzou/app-config.json',
+  '/xiangshangzou/recruit-data.json',
   '/xiangshangzou/icons/icon-72x72.png',
   '/xiangshangzou/icons/icon-96x96.png',
   '/xiangshangzou/icons/icon-128x128.png',
@@ -20,25 +21,29 @@ const STATIC_ASSETS = [
   '/xiangshangzou/icons/maskable-512.png'
 ];
 
-// Install event - cache all static assets
+// Install event - cache all static assets, skip waiting immediately
 self.addEventListener('install', event => {
-  console.log('[向上走 SW] Installing...');
+  console.log('[向上走 SW v1.2.0] Installing...');
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       console.log('[向上走 SW] Caching static assets');
-      return cache.addAll(STATIC_ASSETS);
+      // Use addAll but ignore individual failures
+      return Promise.allSettled(
+        STATIC_ASSETS.map(url => cache.add(url))
+      );
     }).then(() => {
-      console.log('[向上走 SW] Install complete, skipping waiting');
+      console.log('[向上走 SW] Install complete, forcing skipWaiting');
       return self.skipWaiting();
     })
   );
 });
 
-// Activate event - clean old caches
+// Activate event - clean ALL old caches, claim all clients immediately
 self.addEventListener('activate', event => {
-  console.log('[向上走 SW] Activating...');
+  console.log('[向上走 SW v1.2.0] Activating...');
   event.waitUntil(
     caches.keys().then(keys => {
+      // Delete ALL caches that don't match current version
       return Promise.all(
         keys.filter(key => key !== CACHE_NAME).map(key => {
           console.log('[向上走 SW] Deleting old cache:', key);
@@ -46,57 +51,126 @@ self.addEventListener('activate', event => {
         })
       );
     }).then(() => {
-      console.log('[向上走 SW] Claiming clients');
+      console.log('[向上走 SW] Claiming all clients immediately');
       return self.clients.claim();
-    })
-  );
-});
-
-// Fetch event - cache-first then network fallback
-self.addEventListener('fetch', event => {
-  // Skip non-GET requests
-  if (event.request.method !== 'GET') return;
-  
-  // Skip cross-origin requests
-  const url = new URL(event.request.url);
-  if (url.origin !== self.location.origin) return;
-  
-  // For HTML pages: network-first (to get latest content), cache fallback
-  if (event.request.headers.get('Accept')?.includes('text/html')) {
-    event.respondWith(
-      fetch(event.request)
-        .then(response => {
-          const cloned = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(event.request, cloned));
-          return response;
-        })
-        .catch(() => caches.match(event.request))
-    );
-    return;
-  }
-  
-  // For other assets: cache-first
-  event.respondWith(
-    caches.match(event.request).then(cached => {
-      return cached || fetch(event.request).then(response => {
-        const cloned = response.clone();
-        caches.open(CACHE_NAME).then(cache => cache.put(event.request, cloned));
-        return response;
+    }).then(() => {
+      // Notify all clients that a new SW has taken control
+      return self.clients.matchAll({ includeUncontrolled: true }).then(clients => {
+        clients.forEach(client => {
+          client.postMessage({ type: 'SW_UPDATED', version: APP_VERSION });
+        });
       });
     })
   );
 });
 
-// Listen for update messages from the main page
+// Helper: fetch with timeout
+function fetchWithTimeout(request, timeoutMs) {
+  return new Promise((resolve, reject) => {
+    const timeoutId = setTimeout(() => {
+      reject(new Error('Network timeout'));
+    }, timeoutMs);
+
+    fetch(request).then(response => {
+      clearTimeout(timeoutId);
+      resolve(response);
+    }).catch(err => {
+      clearTimeout(timeoutId);
+      reject(err);
+    });
+  });
+}
+
+// Fetch event
+self.addEventListener('fetch', event => {
+  // Skip non-GET requests
+  if (event.request.method !== 'GET') return;
+
+  const url = new URL(event.request.url);
+
+  // Skip cross-origin requests (like recruit-data.json from GitHub Pages)
+  // Let them go straight to network
+  if (url.origin !== self.location.origin) {
+    event.respondWith(fetch(event.request).catch(() => {
+      // Return a basic offline response for cross-origin failures
+      return new Response('Offline', { status: 503, statusText: 'Offline' });
+    }));
+    return;
+  }
+
+  // For HTML pages: network-first with 3-second timeout, then cache fallback
+  if (event.request.headers.get('Accept')?.includes('text/html')) {
+    event.respondWith(
+      fetchWithTimeout(event.request, 3000)
+        .then(response => {
+          // Cache the fresh response
+          const cloned = response.clone();
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, cloned);
+          });
+          return response;
+        })
+        .catch(() => {
+          // Network failed or timed out - serve from cache
+          return caches.match(event.request).then(cached => {
+            return cached || caches.match('/xiangshangzou/index.html');
+          });
+        })
+    );
+    return;
+  }
+
+  // For JSON data (app-config.json etc): network-first with short timeout
+  if (url.pathname.endsWith('.json')) {
+    event.respondWith(
+      fetchWithTimeout(event.request, 3000)
+        .then(response => {
+          const cloned = response.clone();
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, cloned);
+          });
+          return response;
+        })
+        .catch(() => {
+          return caches.match(event.request);
+        })
+    );
+    return;
+  }
+
+  // For other assets: cache-first, then network
+  event.respondWith(
+    caches.match(event.request).then(cached => {
+      return cached || fetch(event.request).then(response => {
+        const cloned = response.clone();
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(event.request, cloned);
+        });
+        return response;
+      }).catch(() => {
+        return caches.match(event.request);
+      });
+    })
+  );
+});
+
+// Listen for messages from the main page
 self.addEventListener('message', event => {
   if (event.data === 'CHECK_UPDATE') {
-    // Trigger update check
     self.registration.update().catch(err => {
       console.log('[向上走 SW] Update check failed:', err);
     });
   }
-  
+
   if (event.data === 'SKIP_WAITING') {
     self.skipWaiting();
+  }
+
+  if (event.data === 'CLEAR_CACHE') {
+    caches.keys().then(keys => {
+      Promise.all(keys.map(key => caches.delete(key))).then(() => {
+        console.log('[向上走 SW] All caches cleared');
+      });
+    });
   }
 });
