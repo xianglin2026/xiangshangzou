@@ -1,7 +1,7 @@
 // Service Worker for "向上走" PWA
-// Version: 1.2.0 - 强制更新策略，修复"加载中"问题
-const CACHE_NAME = 'xiangshangzou-v1.2.0';
-const APP_VERSION = '1.2.0';
+// Version: 1.2.1 - 更新招聘数据至34条
+const CACHE_NAME = 'xiangshangzou-v1.2.1';
+const APP_VERSION = '1.2.1';
 
 // Files to cache for offline use
 const STATIC_ASSETS = [

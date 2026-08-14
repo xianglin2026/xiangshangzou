@@ -1,7 +1,7 @@
 {
   "appName": "向上走",
-  "version": "1.2.0",
-  "lastUpdated": "2026-07-28",
+  "version": "1.2.1",
+  "lastUpdated": "2026-08-14",
   "description": "考公+央国企备考工作台",
   "features": {
     "gongkao": {
@@ -12,7 +12,7 @@
     },
     "guoqi": {
       "dailyTasks": "央国企每日并行任务",
-      "recruitCount": 26,
+      "recruitCount": 29,
       "phases": 4
     }
   },
