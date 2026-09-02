@@ -1,7 +1,7 @@
 {
   "appName": "向上走",
-  "version": "1.2.1",
-  "lastUpdated": "2026-08-14",
+  "version": "1.3.0",
+  "lastUpdated": "2026-09-02",
   "description": "考公+央国企备考工作台",
   "features": {
     "gongkao": {
@@ -12,16 +12,18 @@
     },
     "guoqi": {
       "dailyTasks": "央国企每日并行任务",
-      "recruitCount": 29,
-      "phases": 4
+      "recruitCount": 34,
+      "phases": 4,
+      "autoUpdate": "每日自动同步 · 打开APP即拉取最新招聘信息"
     }
   },
   "updateNotes": [
-    "v1.2.0: 修复招聘信息卡在'加载中'的问题",
-    "内置完整30条招聘数据，离线也能查看",
-    "Service Worker强制更新策略，新版本自动生效",
-    "PWA 支持：可安装到手机/电脑桌面",
-    "底部导航栏：移动端快捷切换"
+    "v1.3.0: 央国企招聘信息改为每日自动更新",
+    "打开APP或切回前台自动拉取线上最新 recruit-data.json",
+    "新增「🔄 刷新」按钮，可手动立即同步",
+    "显示「更新于 日期 · 每日自动同步」与岗位总数",
+    "GitHub Actions 每日定时更新数据并推送",
+    "内置完整34条招聘数据，离线也能查看"
   ],
   "nextFeatures": [
     "每日学习提醒通知",

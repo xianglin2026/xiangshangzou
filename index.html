@@ -517,11 +517,16 @@ body.app-mode { padding-bottom: 60px; }
   </div>
 
   <!-- 央国企招聘信息推送 -->
-  <h3 style="margin-bottom:16px;margin-top:28px;font-size:17px;">📬 央国企招聘信息推送（每日更新）</h3>
-  <div style="margin-bottom:12px;font-size:12px;color:var(--text-muted);display:flex;gap:20px;flex-wrap:wrap;">
-    <span>🎯 目标画像：27届 · 会计学 · 预备党员 · 学生干部 · 到手7000+</span>
-    <span>📍 优先：重庆地区 → 广东地区</span>
-    <span id="recruitUpdateTime" style="color:var(--accent-4);">🕐 加载招聘信息...</span>
+  <h3 style="margin-bottom:16px;margin-top:28px;font-size:17px;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+    <span>📬 央国企招聘信息推送（每日更新）</span>
+    <button id="recruitRefreshBtn" onclick="refreshRecruit()" title="拉取最新招聘信息"
+      style="padding:4px 12px;border:1px solid var(--border);border-radius:16px;background:var(--accent-4);color:#fff;cursor:pointer;font-size:12px;font-weight:600;white-space:nowrap;">🔄 刷新</button>
+  </h3>
+  <div style="margin-bottom:12px;font-size:12px;color:var(--text-muted);display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+    <span>🎯 27届 · 会计学 · 预备党员 · 学生干部 · 到手7000+</span>
+    <span>📍 重庆 → 广东</span>
+    <span id="recruitCount" style="color:var(--text-muted);"></span>
+    <span id="recruitUpdateTime" style="color:var(--accent-4);margin-left:auto;">🕐 加载招聘信息...</span>
   </div>
 
   <!-- 筛选条件 -->
@@ -1589,36 +1594,43 @@ let recruitData = [...recruitDataFallback];
 
 let currentFilter = 'all';
 
-// 从远程加载最新招聘数据
-async function fetchRecruitData() {
+// 从远程加载最新招聘数据（可重复调用，支持手动刷新 / 打开APP自动刷新）
+let recruitRefreshing = false;
+async function refreshRecruit() {
+  if (recruitRefreshing) return;
+  recruitRefreshing = true;
+  const btn = document.getElementById('recruitRefreshBtn');
+  const timeEl = document.getElementById('recruitUpdateTime');
+  const countEl = document.getElementById('recruitCount');
+  const oldLabel = btn ? btn.textContent : '🔄 刷新';
+  if (btn) { btn.textContent = '🔄 同步中…'; btn.disabled = true; }
+  if (timeEl) timeEl.textContent = '🕐 同步中…';
   try {
-    // 添加时间戳防止缓存
+    // 时间戳防止缓存，保证每次都拉取线上最新 JSON
     const url = RECRUIT_DATA_URL + '?t=' + Date.now();
-    const resp = await fetch(url, { cache: 'no-cache' });
-    if (resp.ok) {
-      const json = await resp.json();
-      if (json.data && json.data.length > 0) {
-        recruitData = json.data;
-        // 更新界面上的日期
-        const el = document.getElementById('recruitUpdateTime');
-        if (el && json.updated) {
-          el.textContent = `🕐 更新于 ${json.updated}`;
-        }
-        console.log('[向上走] 招聘数据已更新，共 ' + recruitData.length + ' 条');
-        return true;
-      }
-    }
-    throw new Error('Invalid response');
-  } catch(e) {
+    const resp = await fetch(url, { cache: 'no-store' });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const json = await resp.json();
+    if (!json.data || json.data.length === 0) throw new Error('空数据');
+    recruitData = json.data;
+    const d = json.updated || new Date().toISOString().slice(0, 10);
+    if (timeEl) timeEl.textContent = `🕐 更新于 ${d} · 每日自动同步`;
+    if (countEl) countEl.textContent = `📊 共 ${recruitData.length} 个岗位`;
+    renderRecruitList();
+    console.log('[向上走] 招聘数据已刷新，共 ' + recruitData.length + ' 条');
+  } catch (e) {
     console.log('[向上走] 远程数据加载失败，使用本地缓存', e.message);
-    // 即使远程加载失败，也要显示日期，避免一直卡在"加载"
-    const el = document.getElementById('recruitUpdateTime');
-    if (el && (el.textContent.includes('加载') || el.textContent.trim() === '')) {
-      el.textContent = '🕐 网络异常，显示本地数据';
+    if (timeEl && (timeEl.textContent.includes('加载') || timeEl.textContent.includes('同步'))) {
+      timeEl.textContent = '🕐 网络异常，显示本地数据';
     }
-    return false;
+    if (countEl) countEl.textContent = `📊 共 ${recruitData.length} 个岗位（本地）`;
+  } finally {
+    if (btn) { btn.textContent = oldLabel; btn.disabled = false; }
+    recruitRefreshing = false;
   }
 }
+// 兼容旧调用（init 处）
+const fetchRecruitData = refreshRecruit;
 
 function renderRecruitList() {
   // 动态更新日期：如果当前显示"加载"相关文本或空白，则使用当前日期
@@ -1753,17 +1765,13 @@ renderPractice();
 renderGQTasks();
 // 立即渲染本地招聘数据（已内置完整30条），不显示"加载中"
 renderRecruitList();
-// 异步拉取远程最新数据，拉到后更新
-fetchRecruitData().then(updated => {
-  if (updated) {
-    console.log('[向上走] 招聘信息已从远程更新');
-    renderRecruitList();
-  } else {
-    console.log('[向上走] 使用本地内置招聘信息');
-  }
-}).catch(() => {
-  console.log('[向上走] 招聘信息远程加载异常，使用本地数据');
+// 打开APP即自动拉取线上最新招聘数据
+refreshRecruit();
+// 切回前台 / 重新可见时再次自动同步（实现"直接点开APP刷新就自动更新"）
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) refreshRecruit();
 });
+window.addEventListener('focus', () => refreshRecruit());
 updateAllProgress();
 </script>
 </body>

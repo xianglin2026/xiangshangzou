@@ -1,7 +1,7 @@
 // Service Worker for "向上走" PWA
-// Version: 1.2.1 - 更新招聘数据至34条
-const CACHE_NAME = 'xiangshangzou-v1.2.1';
-const APP_VERSION = '1.2.1';
+// Version: 1.3.0 - 招聘信息每日自动同步
+const CACHE_NAME = 'xiangshangzou-v1.3.0';
+const APP_VERSION = '1.3.0';
 
 // Files to cache for offline use
 const STATIC_ASSETS = [
@@ -120,19 +120,22 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // For JSON data (app-config.json etc): network-first with short timeout
+  // For JSON data (recruit-data.json, app-config.json): network-first.
+  // 招聘数据每次都要取线上最新，用干净 URL（去掉 ?t= 时间戳）做离线缓存
   if (url.pathname.endsWith('.json')) {
+    const cleanUrl = url.origin + url.pathname;
     event.respondWith(
       fetchWithTimeout(event.request, 3000)
         .then(response => {
           const cloned = response.clone();
           caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, cloned);
+            // 以干净 URL 缓存，避免带时间戳的 URL 无限堆积
+            cache.put(cleanUrl, cloned);
           });
           return response;
         })
         .catch(() => {
-          return caches.match(event.request);
+          return caches.match(cleanUrl).then(cached => cached || caches.match(event.request));
         })
     );
     return;
