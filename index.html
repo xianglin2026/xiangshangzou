@@ -538,6 +538,7 @@ body.app-mode { padding-bottom: 60px; }
     <button class="recruit-filter" onclick="filterRecruit('matched')" style="padding:5px 14px;border:1px solid var(--border);border-radius:20px;background:transparent;color:var(--text-muted);cursor:pointer;font-size:12px;font-weight:600;">✅ 高度匹配</button>
   </div>
 
+  <div id="recruitDaily"></div>
   <div id="recruitList" class="recruit-list"></div>
 
   <div style="margin-top:16px;font-size:12px;color:var(--text-muted);background:rgba(244,114,182,0.06);border:1px dashed rgba(244,114,182,0.2);border-radius:8px;padding:12px 16px;">
@@ -1632,34 +1633,132 @@ async function refreshRecruit() {
 // 兼容旧调用（init 处）
 const fetchRecruitData = refreshRecruit;
 
+// 按当天日期计算每条招聘的动态状态：截止倒计时、自动过期（无需手动/服务端更新）
+function computeRecruitDynamic() {
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  recruitData.forEach(r => {
+    r._expired = false;
+    r._daysLeft = null;
+    if (r.deadlineISO) {
+      const d = new Date(r.deadlineISO + 'T00:00:00');
+      const diff = Math.round((d - today) / 86400000);
+      r._daysLeft = diff;
+      if (diff < 0) r._expired = true;
+    }
+    if (r._expired) {
+      r._statusBadge = '❌ 已截止';
+    } else if (r._daysLeft !== null) {
+      if (r._daysLeft === 0) r._statusBadge = '⏰ 今天截止';
+      else if (r._daysLeft === 1) r._statusBadge = '⏰ 明天截止';
+      else r._statusBadge = '⏰ 剩 ' + r._daysLeft + ' 天';
+    } else {
+      r._statusBadge = r.deadlineTag || '';
+    }
+  });
+}
+
+// 今日重点推荐：按"一年中的第几天"确定性轮换，每天打开看到不同的重点岗位
+function getDailyFeatured() {
+  const start = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
+  const pool = recruitData.filter(r => !r._expired && (r.matchLevel === 'high' || r.hot));
+  if (pool.length === 0) return [];
+  const n = Math.min(3, pool.length);
+  const res = [];
+  for (let i = 0; i < n; i++) res.push(pool[(start + i) % pool.length]);
+  return res;
+}
+
 function renderRecruitList() {
-  // 动态更新日期：如果当前显示"加载"相关文本或空白，则使用当前日期
+  computeRecruitDynamic();
   const now = new Date();
   const ds = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
   const el = document.getElementById('recruitUpdateTime');
-  if (el && (el.textContent.includes('加载') || el.textContent.trim() === '')) {
-    el.textContent = `🕐 更新于 ${ds}`;
+  if (el) el.textContent = `🕐 今日 ${ds} · 每日自动同步`;
+
+  // 每日概览 + 今日重点推荐 + 今日招聘日报 + 关键时间节点（全部按当天日期实时计算）
+  const dailyEl = document.getElementById('recruitDaily');
+  if (dailyEl) {
+    const active = recruitData.filter(r => !r._expired).length;
+    const week = recruitData.filter(r => !r._expired && r._daysLeft !== null && r._daysLeft >= 0 && r._daysLeft <= 7).length;
+    const expiredCnt = recruitData.filter(r => r._expired).length;
+    const featured = getDailyFeatured();
+    const endingSoon = recruitData.filter(r => !r._expired && r._daysLeft !== null && r._daysLeft >= 0 && r._daysLeft <= 7)
+                                  .sort((a,b)=>a._daysLeft-b._daysLeft);
+    const timeline = recruitData.filter(r => !r._expired && r._daysLeft !== null)
+                                 .sort((a,b)=>a._daysLeft-b._daysLeft).slice(0,5);
+
+    let html = `<div style="font-size:12px;color:var(--text-muted);margin-bottom:10px;display:flex;gap:10px;flex-wrap:wrap;">
+      📅 今日可投递 <b style="color:var(--accent-4)">${active}</b> 个
+      · 7日内截止 <b style="color:#f59e0b">${week}</b> 个
+      · 已截止 <b style="color:#94a3b8">${expiredCnt}</b> 个</div>`;
+
+    // 今日招聘日报（一句话提示，随日期变化）
+    let digest = '';
+    if (endingSoon.length > 0) digest = `本周有 <b style="color:#f59e0b">${endingSoon.length}</b> 个岗位即将截止，建议优先投递：` +
+      endingSoon.slice(0,3).map(r=>`${r.company}(剩${r._daysLeft}天)`).join('、');
+    else if (active > 0) digest = `今日 <b style="color:var(--accent-4)">${active}</b> 个岗位正在招聘中，可正常投递`;
+    else if (expiredCnt > 0) digest = `当前岗位均已截止，建议关注后续补录/春招`;
+    html += `<div style="background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.2);border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:13px;line-height:1.5;">📋 <b>今日招聘日报</b>：${digest}</div>`;
+
+    // 今日重点推荐（每日轮换）
+    if (featured.length) {
+      html += `<div style="background:linear-gradient(135deg,rgba(244,114,182,0.12),rgba(99,102,241,0.12));border:1px solid rgba(244,114,182,0.25);border-radius:12px;padding:12px 14px;margin-bottom:12px;">
+        <div style="font-size:13px;font-weight:700;margin-bottom:8px;color:var(--text);">🌟 今日重点推荐（每日轮换）</div>
+        ${featured.map(r => `<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:4px 0;font-size:13px;">
+            <span>🏢 <b>${r.company}</b> · ${r.title}</span>
+            <a href="${r.link}" target="_blank" style="color:var(--accent-4);white-space:nowrap;text-decoration:none;">🔗 投递</a>
+          </div>`).join('')}
+      </div>`;
+    }
+
+    // 关键时间节点（未来最近截止的岗位）
+    if (timeline.length) {
+      html += `<div style="background:rgba(148,163,184,0.06);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:6px;">
+        <div style="font-size:13px;font-weight:700;margin-bottom:8px;color:var(--text);">🗓️ 关键时间节点（最近截止）</div>
+        ${timeline.map(r => {
+          const d = new Date(r.deadlineISO + 'T00:00:00');
+          const md = `${d.getMonth()+1}月${d.getDate()}日`;
+          const urgent = r._daysLeft <= 7;
+          return `<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:3px 0;font-size:12px;">
+            <span style="color:var(--text-muted);">${md}</span>
+            <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">🏢 ${r.company}</span>
+            <span style="color:${urgent ? '#f59e0b' : 'var(--text-muted)'};white-space:nowrap;">${r._daysLeft===0?'今天':r._daysLeft===1?'明天':'剩'+r._daysLeft+'天'}</span>
+          </div>`;
+        }).join('')}
+      </div>`;
+    }
+    dailyEl.innerHTML = html;
   }
-  
+
   const container = document.getElementById('recruitList');
-  const filtered = currentFilter === 'all' ? recruitData :
-    currentFilter === 'hot' ? recruitData.filter(r => r.hot) :
+  let filtered = currentFilter === 'all' ? recruitData :
+    currentFilter === 'hot' ? recruitData.filter(r => r.hot || (!r._expired && r._daysLeft !== null && r._daysLeft <= 7)) :
     currentFilter === 'matched' ? recruitData.filter(r => r.matchLevel === 'high') :
     recruitData.filter(r => r.locationTag === currentFilter);
 
+  // 排序：未截止优先、已截止沉底；未截止内按剩余天数升序（即将截止排前，随日期自动变化）
+  filtered = filtered.slice().sort((a, b) => {
+    if (a._expired !== b._expired) return a._expired ? 1 : -1;
+    const da = a._daysLeft === null ? 9999 : a._daysLeft;
+    const db = b._daysLeft === null ? 9999 : b._daysLeft;
+    return da - db;
+  });
+
   container.innerHTML = filtered.map(r => {
     const saved = localStorage.getItem(`recruit-star-${r.id}`) === 'true';
-    const cardClass = [r.hot ? 'hot' : '', r.matchLevel === 'high' ? 'matched' : ''].filter(Boolean).join(' ');
+    const cardClass = [r.hot ? 'hot' : '', r.matchLevel === 'high' ? 'matched' : '', r._expired ? 'expired' : ''].filter(Boolean).join(' ');
+    const urgent = r._expired || (r._daysLeft !== null && r._daysLeft <= 7);
     return `
     <div class="recruit-card ${cardClass}" data-id="${r.id}">
       <div class="rc-main">
         <div class="rc-title">${r.title}</div>
         <div class="rc-company">🏢 ${r.company}</div>
         <div class="rc-meta">
-          <span class="rc-badge ${r.locationTag === 'cq' ? 'location-cq' : 'location-gd'}">��� ${r.location}</span>
+          <span class="rc-badge ${r.locationTag === 'cq' ? 'location-cq' : 'location-gd'}">📍 ${r.location}</span>
           <span class="rc-badge salary">💰 ${r.salaryTag}</span>
           <span class="rc-badge type">📋 ${r.type}</span>
-          ${r.deadlineTag.includes('截止') || r.deadlineTag.includes('近期') ? `<span class="rc-badge deadline">⏰ ${r.deadlineTag}</span>` : `<span class="rc-badge" style="background:rgba(148,163,184,0.15);color:var(--text-muted);">📅 ${r.deadlineTag}</span>`}
+          <span class="rc-badge ${urgent ? 'deadline' : ''}" style="${urgent ? '' : 'background:rgba(148,163,184,0.15);color:var(--text-muted);'}">⏰ ${r._statusBadge}</span>
           ${r.matchLevel === 'high' ? '<span class="rc-badge match">✅ 高度匹配</span>' : ''}
         </div>
         <div class="rc-requirements">

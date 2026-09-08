@@ -1,7 +1,7 @@
 // Service Worker for "向上走" PWA
-// Version: 1.3.0 - 招聘信息每日自动同步
-const CACHE_NAME = 'xiangshangzou-v1.3.0';
-const APP_VERSION = '1.3.0';
+// Version: 1.3.1 - 招聘信息按当日日期动态计算（倒计时/自动过期/今日推荐）
+const CACHE_NAME = 'xiangshangzou-v1.3.1';
+const APP_VERSION = '1.3.1';
 
 // Files to cache for offline use
 const STATIC_ASSETS = [

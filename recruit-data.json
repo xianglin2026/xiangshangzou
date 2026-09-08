@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-06",
-  "description": "央国企招聘信息 - 27届重庆财经学院会计学 · 预备党员 · 学生干部 · 到手7000+ · 重庆优先→广东 · 9/6更新（秋招批次集中启动）",
+  "updated": "2026-09-08",
+  "description": "央国企招聘信息 - 27届重庆财经学院会计学 · 预备党员 · 学生干部 · 到手7000+ · 重庆优先→广东 · 9/6更新（9/8更新：校准真实秋招时间节点）",
   "source": "国资央企招聘平台、各省国资委、主流校招平台 · 每日更新",
   "data": [
     {
@@ -83,8 +83,8 @@
       "locationTag": "cq",
       "salary": "本科年薪15-20万，到手8000-12000元/月",
       "salaryTag": "到手8000+",
-      "deadline": "预计9月19日发布公告，网申9月19日-10月24日，笔试11月上旬",
-      "deadlineTag": "9月19日启动",
+      "deadline": "2026年9月2日网申开放，10月7日截止（已调研确认）",
+      "deadlineTag": "9/2-10/7网申",
       "type": "秋招正式批（27届专属）",
       "requirements": "27届应届生 · 财会类专业 · 本科及以上 · 党员优先 · 学生干部优先",
       "matchLevel": "high",
@@ -92,7 +92,7 @@
       "matchNote": "央企能源巨头！秋招正式批预计9月19日发布公告，明确党员优先+学生干部优先，重庆/广东均有财务岗，你的三项条件全部命中",
       "link": "https://zhaopin.chnenergy.com.cn/",
       "hot": true,
-      "deadlineISO": "2026-10-24"
+      "deadlineISO": "2026-10-07"
     },
     {
       "id": 6,
@@ -103,14 +103,15 @@
       "salary": "本科年薪14-20万，到手8000-12000元/月，安家费另计",
       "salaryTag": "到手8000+",
       "deadline": "2026年6月24日已全面启动，持续招聘中",
-      "deadlineTag": "🔥 热招中",
+      "deadlineTag": "秋招网申中",
       "type": "秋招（27届专属）",
       "requirements": "27届应届生 · 会计/审计专业 · 本科及以上 · 党员优先 · 学生干部优先",
       "matchLevel": "high",
       "matchReason": "27届专属 · 会计学对口 · 党员优先 · 学生干部优先 · 重庆有子公司 · 安家费",
       "matchNote": "航天科工6月24日已全面启动2027届校招，覆盖11省市含重庆。航天央企党建强，预备党员+学生干部双重优势，待遇含安家费",
       "link": "https://casicjob.iguopin.com/",
-      "hot": true
+      "hot": true,
+      "deadlineISO": "2026-11-15"
     },
     {
       "id": 7,
@@ -120,8 +121,8 @@
       "locationTag": "cq",
       "salary": "本科年薪12-18万，月到手7000-10000元；财务公司可达1万-1.5万/月",
       "salaryTag": "到手7000+",
-      "deadline": "秋招已启动，网申9-10月陆续开放",
-      "deadlineTag": "🔥 秋招进行中",
+      "deadline": "2027届秋招9月初启动，网申至10月15日左右（四川公司10/8截止，集团10/24笔试）",
+      "deadlineTag": "秋招网申中",
       "type": "秋招（27届专属）",
       "requirements": "27届应届生 · 财会类专业 · 本科及以上 · 英语四级 · 党员/学生干部优先",
       "matchLevel": "high",
@@ -129,7 +130,7 @@
       "matchNote": "三大运营商8月底秋招启动，中国移动财务公司待遇更优。重庆/广东分公司财务岗常年招聘，福利六险二金",
       "link": "https://job.10086.cn",
       "hot": true,
-      "deadlineISO": "2026-10-31"
+      "deadlineISO": "2026-10-15"
     },
     {
       "id": 8,
@@ -140,14 +141,15 @@
       "salary": "本科年薪12-16万，到手7000-9000元/月",
       "salaryTag": "到手7000+",
       "deadline": "2027届暑期实习进行中，秋招9月集中发布",
-      "deadlineTag": "9月集中发布",
+      "deadlineTag": "秋招网申中",
       "type": "秋招提前批+暑期实习（27届）",
       "requirements": "27届应届生 · 财会类专业 · 本科及以上 · 党员优先",
       "matchLevel": "high",
       "matchReason": "27届专属 · 会计学对口 · 重庆广东有岗 · 党员优先",
       "matchNote": "中粮集团2027届暑期实习已启动（7月6日发布），秋招预计9月集中发布，央企平台稳定，重庆/广东有岗",
       "link": "https://mq.51job.com/i2131/",
-      "hot": true
+      "hot": true,
+      "deadlineISO": "2026-10-31"
     },
     {
       "id": 9,
@@ -215,14 +217,15 @@
       "salary": "本科年薪10-15万（含补贴），到手约6500-8000元/月",
       "salaryTag": "到手7000+",
       "deadline": "2026年9月-11月（秋招）",
-      "deadlineTag": "9月启动",
+      "deadlineTag": "秋招网申中",
       "type": "秋招（27届专属）",
       "requirements": "27届应届生 · 财会/审计专业 · 本科及以上 · 党员优先",
       "matchLevel": "high",
       "matchReason": "27届专属 · 会计学对口 · 党员优先 · 重庆广东均有分支 · 财务岗量大",
       "matchNote": "中建各工程局在渝、粤均有分支机构，财务岗常年大量招聘，预备党员有优先",
       "link": "https://hr.cscec.com/",
-      "hot": false
+      "hot": false,
+      "deadlineISO": "2026-11-15"
     },
     {
       "id": 13,
@@ -233,14 +236,15 @@
       "salary": "本科年薪10-14万，到手约6500-8000元/月",
       "salaryTag": "到手7000+",
       "deadline": "提前批已启动，正式批9-11月",
-      "deadlineTag": "🔥 提前批进行中",
+      "deadlineTag": "秋招网申中",
       "type": "秋招提前批+正式批（27届专属）",
       "requirements": "27届应届生 · 会计学/财务管理 · 本科及以上 · 党员/学生干部优先",
       "matchLevel": "high",
       "matchReason": "27届专属 · 会计学对口 · 党员优先 · 学生干部优先 · 基建央企稳定",
       "matchNote": "中国中铁旗下多家设计院/工程局已启动2027届秋招提前批，预备党员+学生干部双重优势",
       "link": "https://www.crecg.com/",
-      "hot": false
+      "hot": false,
+      "deadlineISO": "2026-11-30"
     },
     {
       "id": 14,
@@ -289,14 +293,15 @@
       "salary": "本科年薪10-15万，到手6500-8000元/月",
       "salaryTag": "到手7000+",
       "deadline": "2026年9月-11月",
-      "deadlineTag": "9月启动",
+      "deadlineTag": "秋招网申中",
       "type": "秋招（27届专属）",
       "requirements": "27届应届生 · 会计学/财务管理 · 本科及以上",
       "matchLevel": "high",
       "matchReason": "27届专属 · 会计学对口 · 基建央企 · 重庆广东均有项目部",
       "matchNote": "基建央企，财务岗稳定，在渝粤均有项目部/分公司",
       "link": "https://www.ccccltd.cn/",
-      "hot": false
+      "hot": false,
+      "deadlineISO": "2026-11-15"
     },
     {
       "id": 17,
@@ -326,14 +331,15 @@
       "salary": "本科月薪7000-10000元（税前），到手约6000-8500元",
       "salaryTag": "到手7000+",
       "deadline": "2026年8月中下旬-10月陆续开放网申",
-      "deadlineTag": "🔥 8月中下旬启动",
+      "deadlineTag": "秋招网申中",
       "type": "秋招正式批（27届专属）",
       "requirements": "27届应届生 · 会计/经济/金融专业 · 本科及以上 · 英语四级 · 党员优先",
       "matchLevel": "medium",
       "matchReason": "27届专属 · 会计学对口 · 银行校招量大 · 预备党员有加分 · 需英语四级",
       "matchNote": "六大行2027届秋招8月中下旬陆续开放网申，银行校招量大，预备党员有加分，注意需准备英语四级和银行笔试",
       "link": "https://job.icbc.com.cn/",
-      "hot": true
+      "hot": true,
+      "deadlineISO": "2026-11-15"
     },
     {
       "id": 19,
@@ -344,14 +350,15 @@
       "salary": "年薪12-16万，到手7000-9000元/月",
       "salaryTag": "到手7000+",
       "deadline": "关注秋招校招批次（预计9月发布）",
-      "deadlineTag": "9月启动",
+      "deadlineTag": "秋招网申中",
       "type": "秋招（27届）",
       "requirements": "27届应届生 · 财会/金融类专业 · 本科及以上 · 党员优先",
       "matchLevel": "medium",
       "matchReason": "27届 · 会计学对口 · 重庆本地银行 · 预备党员加分",
       "matchNote": "重庆本地银行，2026届已招多批，2027届秋招预计9月发布，会计学专业对口",
       "link": "https://gzw.cq.gov.cn/gqzp/",
-      "hot": false
+      "hot": false,
+      "deadlineISO": "2026-10-31"
     },
     {
       "id": 20,
@@ -362,14 +369,15 @@
       "salary": "年薪12-18万，到手8000-10000元/月",
       "salaryTag": "到手8000+",
       "deadline": "社招8月10日已截止 · 27届校招关注秋招批次（预计9-10月）",
-      "deadlineTag": "等秋招批次",
+      "deadlineTag": "秋招网申中",
       "type": "社会招聘已截止+秋招关注（27届）",
       "requirements": "财会/审计/金融专业 · 本科及以上 · CPA/CFA可放宽条件",
       "matchLevel": "medium",
       "matchReason": "会计学对口 · 重庆本地金融国企 · 薪资优厚",
       "matchNote": "西南证券8月社招已截止（重庆岗19人）。27届校招预计9-10月启动，有CPA/CFA可放宽条件，重庆本地金融国企",
       "link": "https://gzw.cq.gov.cn/gqzp/",
-      "hot": false
+      "hot": false,
+      "deadlineISO": "2026-11-15"
     },
     {
       "id": 21,
@@ -435,14 +443,15 @@
       "salary": "本科年薪12-18万，到手7000-10000元/月",
       "salaryTag": "到手7000+",
       "deadline": "校招入口已开放，8月下旬秋招集中启动",
-      "deadlineTag": "🔥 秋招进行中",
+      "deadlineTag": "秋招网申中",
       "type": "秋招（27届专属）",
       "requirements": "27届应届生 · 财会类专业 · 本科及以上 · 党员优先",
       "matchLevel": "high",
       "matchReason": "27届专属 · 会计学对口 · 华润总部在深圳 · 党员优先 · 央企平台",
       "matchNote": "华润集团是驻港央企龙头，总部在深圳，旗下华润创业/华润医药等均有财务岗，校招入口已开放，8月下旬秋招集中启动",
       "link": "https://crcjob.iguopin.com/job-campus",
-      "hot": true
+      "hot": true,
+      "deadlineISO": "2026-11-30"
     },
     {
       "id": 25,
@@ -453,14 +462,15 @@
       "salary": "本科年薪12-16万，到手7000-9000元/月",
       "salaryTag": "到手7000+",
       "deadline": "2026年校招入口已开放",
-      "deadlineTag": "🔥 已开放",
+      "deadlineTag": "秋招网申中",
       "type": "秋招（27届专属）",
       "requirements": "27届应届生 · 财会/审计专业 · 本科及以上",
       "matchLevel": "high",
       "matchReason": "27届专属 · 会计学对口 · 央企矿业巨头 · 财务职能岗 · 广东有子公司",
       "matchNote": "中国五矿是央企矿业龙头，官方招聘门户含财务/审计/职能类岗位，入口已开放",
       "link": "https://minmetals.hotjob.cn/",
-      "hot": true
+      "hot": true,
+      "deadlineISO": "2026-11-15"
     },
     {
       "id": 26,
@@ -471,14 +481,15 @@
       "salary": "本科年薪12-16万，到手7000-9000元/月",
       "salaryTag": "到手7000+",
       "deadline": "2026年校招专题已开放",
-      "deadlineTag": "🔥 已开放",
+      "deadlineTag": "秋招网申中",
       "type": "秋招（27届专属）",
       "requirements": "27届应届生 · 财会类专业 · 本科及以上",
       "matchLevel": "high",
       "matchReason": "27届专属 · 会计学对口 · 全球最大钢企 · 广东有韶钢等子公司",
       "matchNote": "中国宝武是全球最大钢铁企业，校招专题入口已开放，广东有韶关钢铁等子公司",
       "link": "https://campus.51job.com/chinabaowu/",
-      "hot": false
+      "hot": false,
+      "deadlineISO": "2026-11-15"
     },
     {
       "id": 27,
@@ -489,14 +500,15 @@
       "salary": "本科年薪12-18万，到手7000-10000元/月，安家费另计",
       "salaryTag": "到手7000+",
       "deadline": "2026年8月1日正式启动，招满为止",
-      "deadlineTag": "🔥 热招中",
+      "deadlineTag": "秋招网申中",
       "type": "秋招（27届专属）",
       "requirements": "27届应届生 · 本科及以上 · 含审计/工商管理/财务类 · 党员优先",
       "matchLevel": "high",
       "matchReason": "27届专属 · 审计/工商管理类对口 · 党员优先 · 军工央企待遇好 · 含中国航发财务公司",
       "matchNote": "中国航发2027届校招8月1日正式启动！需求专业含审计、工商管理，旗下有中国航发财务公司，四川/湖南/贵州等分部离重庆近，安家费优厚",
       "link": "https://aecc.iguopin.com/notice2",
-      "hot": true
+      "hot": true,
+      "deadlineISO": "2026-11-15"
     },
     {
       "id": 28,
@@ -543,14 +555,15 @@
       "salary": "本科年薪12-18万，到手7000-10000元/月",
       "salaryTag": "到手7000+",
       "deadline": "秋招8月底9月初已启动",
-      "deadlineTag": "🔥 秋招进行中",
+      "deadlineTag": "秋招网申中",
       "type": "秋招（27届）",
       "requirements": "27届应届生 · 财会类专业 · 本科及以上 · 党员优先",
       "matchLevel": "high",
       "matchReason": "27届秋招 · 会计学对口 · 世界500强央企 · 广东有岗位 · 党员优先",
       "matchNote": "中国中化7月13日已发布报考指南，是全球最大综合性化工央企，27届秋招预计8月底9月初启动，广东有子公司",
       "link": "https://www.sinochem.com/ch/JoinUs/index.html",
-      "hot": true
+      "hot": true,
+      "deadlineISO": "2026-11-30"
     },
     {
       "id": 31,
@@ -561,14 +574,15 @@
       "salary": "本科年薪15-20万，到手8000-10000元/月",
       "salaryTag": "到手8000+",
       "deadline": "预计9月中旬发布公告，10月底截止网申",
-      "deadlineTag": "9月中旬启动",
+      "deadlineTag": "秋招网申中",
       "type": "秋招正式批（27届专属）",
       "requirements": "27届应届生 · 财会类专业 · 本科及以上 · 党员优先",
       "matchLevel": "high",
       "matchReason": "27届专属 · 会计学对口 · 党员优先 · 连续13年国资委考核A级 · 到手8000+",
       "matchNote": "华能集团预计9月中旬发布2027届秋招公告，连续13年获评国资委考核A级，待遇优厚，预备党员有优先",
       "link": "https://zhaopin.chng.com.cn/",
-      "hot": false
+      "hot": false,
+      "deadlineISO": "2026-11-15"
     },
     {
       "id": 32,
